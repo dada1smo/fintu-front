@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import { GlobalStyles } from './styles/GlobalStyles.styles';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './pages/Dashboard';
+import Months from './components/Months';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard" element={<Months />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
