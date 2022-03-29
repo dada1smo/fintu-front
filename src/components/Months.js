@@ -10,6 +10,8 @@ import { ButtonPill } from '../styles/Button.styles';
 import Menu from './Menu';
 import { ArrowDownIcon, MenuHorizontalIcon } from '../images/Icons';
 import { useState } from 'react';
+import { DropdownSelect } from '../styles/Select.styles';
+import Select from './Select';
 
 function Month({ month, name }) {
   return (
@@ -42,10 +44,8 @@ export default function Months() {
   return (
     <ContainerMonths>
       <ContainerSelect>
-        <ButtonPill onClick={() => setYearSelectMenuOpen(!yearSelectMenuOpen)}>
-          2022 <ArrowDownIcon />
-        </ButtonPill>
-        <Menu
+        <Select
+          initialValue={2022}
           open={yearSelectMenuOpen}
           setOpen={setYearSelectMenuOpen}
           items={userActions}

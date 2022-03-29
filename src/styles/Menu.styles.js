@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
-import homeIllustration from '../images/HomeIllustration.svg';
 import { Device } from './Breakpoints.styles';
 
 export const BackdropMenu = styled.div`

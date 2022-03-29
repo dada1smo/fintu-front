@@ -19,7 +19,7 @@ export default function Login() {
         <Input type="password" placeholder="Senha" />
       </CardHomeForm>
       <CardHomeActions>
-        <ButtonPill>Entrar</ButtonPill>
+        <ButtonPill onClick={() => navigate('/dashboard')}>Entrar</ButtonPill>
         <ButtonUnderlined onClick={() => navigate('/register')}>
           Criar nova conta
         </ButtonUnderlined>
