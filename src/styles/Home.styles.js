@@ -8,7 +8,7 @@ export const BackgroundHome = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 60px 0;
+  padding: 32px 0;
   display: flex;
   align-items: flex-end;
 

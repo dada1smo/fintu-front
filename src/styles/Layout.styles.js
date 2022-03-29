@@ -5,7 +5,7 @@ import { Device } from './Breakpoints.styles';
 
 export const Wrapper = styled.div`
   display: grid;
-  padding: ${(props) => (props.dashboard ? '60px 0 60px 40px' : '60px')};
+  padding: ${(props) => (props.dashboard ? '20px 0 20px 40px' : '20px 60px')};
   grid-template-columns: repeat(12, 1fr);
   column-gap: 40px;
   height: 100vh;
