@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
-import homeIllustration from '../images/HomeIllustration.svg';
 import { Device } from './Breakpoints.styles';
 
 export const ContainerMonths = styled.div`
@@ -21,6 +20,8 @@ export const ContainerSelect = styled.div`
   top: 0;
   background: ${Theme.neutral[50]};
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
   padding: 0 0 12px;
 `;

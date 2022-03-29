@@ -15,15 +15,20 @@ export const BackdropMenu = styled.div`
 export const AnchorMenu = styled.div`
   position: relative;
   height: 0;
+  width: 0;
 `;
 
 export const ContainerMenu = styled.div`
   background: ${Theme.neutral['000']};
-  width: 200px;
+  width: 120px;
   position: absolute;
   z-index: 104;
   left: 0;
-  box-shadow: 0px 0px 24px 0px ${Theme.neutral[200]};
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid ${Theme.neutral['600']};
+  box-shadow: 0px 0px 24px 0px ${Theme.neutral[300]};
 `;
 
 export const ListMenu = styled.ul`
