@@ -13,7 +13,11 @@ export default function Select({ initialValue, open, setOpen, items }) {
       <DropdownSelect open={open} onClick={() => setOpen(!open)}>
         {initialValue} <ArrowDownIcon />
         {open && (
-          <ContainerSelect>
+          <ContainerSelect
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.05 }}
+          >
             <ListSelect>
               {items.map(({ label, action }) => {
                 return (

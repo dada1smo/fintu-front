@@ -13,7 +13,11 @@ export default function Menu({ open, setOpen, items }) {
       {open && (
         <>
           <BackdropMenu onClick={() => setOpen(!open)} />
-          <ContainerMenu>
+          <ContainerMenu
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.05 }}
+          >
             <ListMenu>
               {items.map(({ label, action }) => {
                 return (

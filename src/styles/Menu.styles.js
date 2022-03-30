@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
+import { motion } from 'framer-motion';
 import { Device } from './Breakpoints.styles';
 
 export const BackdropMenu = styled.div`
@@ -17,7 +18,7 @@ export const AnchorMenu = styled.div`
   width: 0;
 `;
 
-export const ContainerMenu = styled.div`
+export const ContainerMenu = styled(motion.div)`
   background: ${Theme.neutral['000']};
   width: 120px;
   position: absolute;

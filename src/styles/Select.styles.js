@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
+import { motion } from 'framer-motion';
 import { Device } from './Breakpoints.styles';
 
 export const BackdropSelect = styled.div`
@@ -42,7 +43,7 @@ export const DropdownSelect = styled.div`
   }
 `;
 
-export const ContainerSelect = styled.div`
+export const ContainerSelect = styled(motion.div)`
   background: ${Theme.neutral['000']};
   width: calc(100% + 2px);
   position: absolute;
