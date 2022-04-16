@@ -13,15 +13,19 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const login = async (data) => {
-    const response = await api.post('/auth/login', data);
+    try {
+      const response = await api.post('/auth/login', data);
 
-    localStorage.setItem(
-      'username',
-      JSON.stringify(response.data.payload.username)
-    );
-    localStorage.setItem('token', response.data.token);
-    setUsername(response.data.payload.username);
-    setToken(response.data.token);
+      localStorage.setItem(
+        'username',
+        JSON.stringify(response.data.payload.username)
+      );
+      localStorage.setItem('token', response.data.token);
+      setUsername(response.data.payload.username);
+      setToken(response.data.token);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logout = () => {
@@ -32,7 +36,12 @@ export const UserProvider = ({ children }) => {
   };
 
   const signup = async (data) => {
-    await api.post('/auth/signup', data);
+    try {
+      const response = await api.post('/auth/signup', data);
+      return response;
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (

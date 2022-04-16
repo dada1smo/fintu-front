@@ -12,9 +12,12 @@ import useUser from '../providers/user.provider';
 import { useState } from 'react';
 import { LoadingPageOverlay } from '../styles/Loading.styles';
 import { LoadingPage } from './Loading';
+import { AlertNegative } from '../styles/Alert.styles';
+import { ErrorIcon } from '../images/Icons';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
   const { register, handleSubmit } = useForm();
   const { login, username } = useUser();
   const navigate = useNavigate();
@@ -22,9 +25,10 @@ export default function Login() {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
+      setLoginError('');
       await login(data);
     } catch (error) {
-      console.log(error);
+      setLoginError(error.response.data.msg);
     } finally {
       setLoading(false);
     }
@@ -34,6 +38,12 @@ export default function Login() {
     <>
       <CardHomeForm onSubmit={handleSubmit(onSubmit)}>
         <Label>Login</Label>
+        {loginError && (
+          <AlertNegative>
+            <ErrorIcon />
+            {loginError}
+          </AlertNegative>
+        )}
         <Input type="text" placeholder="Usuário" {...register('email')} />
         <Input type="password" placeholder="Senha" {...register('password')} />
 

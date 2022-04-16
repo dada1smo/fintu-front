@@ -19,3 +19,7 @@ export const Alert = styled.div`
 export const AlertPositive = styled(Alert)`
   background: ${Theme.green[50]};
 `;
+
+export const AlertNegative = styled(Alert)`
+  background: ${Theme.red[50]};
+`;
