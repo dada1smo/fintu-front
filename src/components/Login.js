@@ -9,14 +9,25 @@ import { Input } from '../styles/Input.styles';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useUser from '../providers/user.provider';
+import { useState } from 'react';
+import { LoadingPageOverlay } from '../styles/Loading.styles';
+import { LoadingPage } from './Loading';
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const { login, username } = useUser();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    login(data);
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      await login(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,6 +48,7 @@ export default function Login() {
           Criar nova conta
         </ButtonUnderlined>
       </CardHomeActions>
+      {loading && <LoadingPage>Loading...</LoadingPage>}
     </>
   );
 }
