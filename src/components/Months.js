@@ -12,6 +12,7 @@ import { ArrowDownIcon, MenuHorizontalIcon } from '../images/Icons';
 import { useState } from 'react';
 import { DropdownSelect } from '../styles/Select.styles';
 import Select from './Select';
+import { Skeleton } from './Loading';
 
 function Month({ month, name }) {
   return (

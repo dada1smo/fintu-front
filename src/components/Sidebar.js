@@ -14,6 +14,7 @@ import { Summary } from '../styles/Summary.styles';
 import Menu from './Menu';
 import { useState } from 'react';
 import useUser from '../providers/user.provider';
+import { Skeleton } from './Loading';
 
 export default function Sidebar() {
   const [userMenuOpen, setUserMenuOpen] = useState();
