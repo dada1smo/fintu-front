@@ -9,13 +9,15 @@ import {
 } from '../styles/Sidebar.styles';
 import logo from '../images/Logo.svg';
 import { MenuHorizontalIcon, WalletIcon } from '../images/Icons';
-import { Label, Parapraph, Value } from '../styles/Typography.styles';
+import { Label, Value } from '../styles/Typography.styles';
 import { Summary } from '../styles/Summary.styles';
 import Menu from './Menu';
 import { useState } from 'react';
+import useUser from '../providers/user.provider';
 
 export default function Sidebar() {
   const [userMenuOpen, setUserMenuOpen] = useState();
+  const { logout } = useUser();
 
   const userActions = [
     {
@@ -28,7 +30,7 @@ export default function Sidebar() {
     {
       label: 'Sair',
       action: () => {
-        console.log('saí');
+        logout();
         setUserMenuOpen(!userMenuOpen);
       },
     },

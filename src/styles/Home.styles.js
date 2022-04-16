@@ -82,8 +82,16 @@ export const CardHomeForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 32px 0;
+  padding: 32px 0 20px;
   gap: 20px;
+`;
+
+export const CardHomeFormFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0 0 0;
+  gap: 12px;
 `;
 
 export const CardHomeActions = styled.div`
