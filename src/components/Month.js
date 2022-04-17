@@ -28,7 +28,6 @@ export default function Month({ month, balance, loadingBalance }) {
     return false;
   };
 
-  console.log(checkCurrentMonth(month));
   return (
     <CardMonth current={checkCurrentMonth(month)}>
       <CardMonthHeader>
