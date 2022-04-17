@@ -12,13 +12,18 @@ import { MenuHorizontalIcon, WalletIcon } from '../images/Icons';
 import { Label, Value } from '../styles/Typography.styles';
 import { Summary } from '../styles/Summary.styles';
 import Menu from './Menu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useUser from '../providers/user.provider';
 import { Skeleton } from './Loading';
+import useFinances from '../providers/finances.provider';
+import { formatCurrency } from '../utils/format.utils';
 
 export default function Sidebar() {
   const [userMenuOpen, setUserMenuOpen] = useState();
-  const { logout } = useUser();
+  const [userSavings, setUserSavings] = useState(0);
+  const [loadingUserSavings, setLoadingUserSavings] = useState(false);
+  const { logout, username } = useUser();
+  const { getSavings } = useFinances();
 
   const userActions = [
     {
@@ -37,13 +42,28 @@ export default function Sidebar() {
     },
   ];
 
+  const getUserSavings = async () => {
+    try {
+      setLoadingUserSavings(true);
+      const response = await getSavings();
+      setUserSavings(response.data);
+      setLoadingUserSavings(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserSavings();
+  }, []);
+
   return (
     <SidebarDashboard>
       <SidebarContainer>
         <Logo src={logo} alt="Fintu" />
         <SidebarUserMenu>
           <ButtonPill onClick={() => setUserMenuOpen(!userMenuOpen)}>
-            dada1smo <MenuHorizontalIcon />
+            {username} <MenuHorizontalIcon />
           </ButtonPill>
           <Menu
             open={userMenuOpen}
@@ -52,11 +72,15 @@ export default function Sidebar() {
           />
         </SidebarUserMenu>
         <SidebarWallet>
-          <Label>Carteira</Label>
-          <Summary>
-            <WalletIcon />
-            <Value>13.578,72</Value>
-          </Summary>
+          <Label>Cofre</Label>
+          {loadingUserSavings ? (
+            <Skeleton height="44px" />
+          ) : (
+            <Summary>
+              <WalletIcon />
+              <Value>{formatCurrency(userSavings)}</Value>
+            </Summary>
+          )}
         </SidebarWallet>
         <SidebarContent>
           <ButtonUnderlined>Editar carteira</ButtonUnderlined>

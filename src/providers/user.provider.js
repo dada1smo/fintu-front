@@ -16,10 +16,7 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await api.post('/auth/login', data);
 
-      localStorage.setItem(
-        'username',
-        JSON.stringify(response.data.payload.username)
-      );
+      localStorage.setItem('username', response.data.payload.username);
       localStorage.setItem('token', response.data.token);
       setUsername(response.data.payload.username);
       setToken(response.data.token);
