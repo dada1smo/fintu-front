@@ -18,7 +18,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   font-family: ${Theme.inter};
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 28px;
   color: ${Theme.neutral[600]};
@@ -42,10 +42,10 @@ export const Strong = styled.div`
 
 export const Value = styled.div`
   font-family: ${Theme.inter};
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 28px;
-  color: ${Theme.neutral[600]};
+  color: ${(props) => (props.negative ? Theme.red[900] : Theme.neutral[600])};
 `;
 
 export const Label = styled.span`
