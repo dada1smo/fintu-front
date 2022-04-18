@@ -34,8 +34,36 @@ export const FinancesProvider = ({ children }) => {
     }
   };
 
+  const getMonthItems = async (month) => {
+    try {
+      const response = await api.get(`/financial-items/months/${month}`);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const getMonthBalance = async (month) => {
+    try {
+      const response = await api.get(
+        `/financial-items/months/balance/${month}`
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
-    <FinancesContext.Provider value={{ getSavings, getYears, getYearBalance }}>
+    <FinancesContext.Provider
+      value={{
+        getSavings,
+        getYears,
+        getYearBalance,
+        getMonthItems,
+        getMonthBalance,
+      }}
+    >
       {children}
     </FinancesContext.Provider>
   );

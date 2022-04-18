@@ -47,3 +47,13 @@ export const ButtonUnderlined = styled(Button)`
     border-bottom: 1px solid ${Theme.green[500]};
   }
 `;
+
+export const ButtonIcon = styled(Button)`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+
+  &:hover {
+    background: ${Theme.green[100]};
+  }
+`;

@@ -6,7 +6,7 @@ export default function Dashboard() {
   const { pathname } = useLocation();
 
   return (
-    <Wrapper dashboard={pathname === '/dashboard'}>
+    <Wrapper dashboard={pathname.includes('/dashboard')}>
       <Sidebar />
       <Outlet />
     </Wrapper>

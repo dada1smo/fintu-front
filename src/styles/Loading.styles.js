@@ -18,8 +18,8 @@ export const LoadingPageOverlay = styled(motion.div)`
 
 export const LoaderPage = styled(motion.div)`
   background: ${Theme.green[200]};
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
 `;
 
 export const SkeletonBase = styled(motion.div)`
@@ -42,7 +42,7 @@ export const SkeletonShimmer = styled(motion.div)`
     colorStops: [
       `rgba(0,0,0,0) 0%`,
       `${Theme.neutral[100]} 45%`,
-      `${Theme.neutral[100]} 55%`,
+      `${Theme.neutral[100]} 65%`,
       `rgba(0,0,0,0) 90%`,
     ],
     toDirection: 'to right',
