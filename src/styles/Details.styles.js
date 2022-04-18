@@ -42,7 +42,7 @@ export const ColumnDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding-bottom: 20px;
+  padding-bottom: ${(props) => (props.overflow ? '20px' : '0')};
   overflow-y: ${(props) => (props.overflow ? 'auto' : 'hidden')};
 
   &::-webkit-scrollbar {
