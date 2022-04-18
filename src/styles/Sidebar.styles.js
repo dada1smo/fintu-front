@@ -26,7 +26,7 @@ export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 24px 28px;
+  padding: 12px 28px;
   gap: 28px;
   background: ${Theme.neutral['000']};
   position: relative;

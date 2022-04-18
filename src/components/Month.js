@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { ReceiptIcon } from '../images/Icons';
 import { ButtonUnderlined } from '../styles/Button.styles';
 import {
@@ -16,6 +17,8 @@ import {
 import { Skeleton } from './Loading';
 
 export default function Month({ month, balance, loadingBalance }) {
+  const navigate = useNavigate();
+
   const checkCurrentMonth = (date) => {
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
@@ -46,7 +49,11 @@ export default function Month({ month, balance, loadingBalance }) {
         </Summary>
       )}
       <CardMonthFooter>
-        <ButtonUnderlined>Ver detalhes</ButtonUnderlined>
+        <ButtonUnderlined
+          onClick={() => navigate(`/dashboard/details/${month}`)}
+        >
+          Ver detalhes
+        </ButtonUnderlined>
       </CardMonthFooter>
     </CardMonth>
   );

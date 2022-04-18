@@ -1,8 +1,15 @@
 export function formatCurrency(value) {
-  const float = value / 100;
-  const currencyBR = new Intl.NumberFormat('pt-BR').format(float);
+  if (value === 'No data') {
+    return 'Sem valores';
+  }
 
-  return `R$ ${currencyBR}`;
+  const float = value / 100;
+  const currencyBR = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(float);
+
+  return currencyBR;
 }
 
 export function formatMonth(date) {

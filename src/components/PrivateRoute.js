@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoute = ({ token, redirectPath = '/', children }) => {
   if (!token) {

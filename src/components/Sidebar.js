@@ -8,7 +8,7 @@ import {
   SidebarWallet,
 } from '../styles/Sidebar.styles';
 import logo from '../images/Logo.svg';
-import { MenuHorizontalIcon, WalletIcon } from '../images/Icons';
+import { MenuHorizontalIcon, SavingsIcon, WalletIcon } from '../images/Icons';
 import { Label, Value } from '../styles/Typography.styles';
 import { Summary } from '../styles/Summary.styles';
 import Menu from './Menu';
@@ -77,7 +77,7 @@ export default function Sidebar() {
             <Skeleton height="44px" />
           ) : (
             <Summary>
-              <WalletIcon />
+              <SavingsIcon />
               <Value>{formatCurrency(userSavings)}</Value>
             </Summary>
           )}

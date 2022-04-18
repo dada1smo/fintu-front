@@ -6,10 +6,20 @@ export const ContainerMonths = styled.div`
   grid-column: 4 / span 9;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  column-gap: 40px;
+  column-gap: 32px;
   overflow-y: auto;
   position: relative;
-  padding-right: 40px;
+  padding-right: 32px;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 100%;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.neutral[200]};
+    border-radius: 0;
+  }
 `;
 
 export const ContainerSelect = styled.div`

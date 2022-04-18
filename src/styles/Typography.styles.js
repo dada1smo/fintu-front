@@ -46,6 +46,7 @@ export const Value = styled.div`
   font-weight: 400;
   line-height: 28px;
   color: ${(props) => (props.negative ? Theme.red[900] : Theme.neutral[600])};
+  white-space: nowrap;
 `;
 
 export const Label = styled.span`
@@ -54,8 +55,8 @@ export const Label = styled.span`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 1px;
-  color: ${Theme.green[700]};
   text-transform: uppercase;
+  color: ${(props) => (props.negative ? Theme.red[900] : Theme.green[700])};
 `;
 
 export const Parapraph = styled.p`
