@@ -5,7 +5,7 @@ import {
   CardHomeForm,
   CardHomeFormFooter,
 } from '../styles/Home.styles';
-import { Input, InputFlex } from '../styles/Input.styles';
+import { Input, FormFlex } from '../styles/Form.styles';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { AlertNegative, AlertPositive } from '../styles/Alert.styles';
@@ -13,12 +13,28 @@ import { CheckIcon, ErrorIcon } from '../images/Icons';
 import useUser from '../providers/user.provider';
 import { useForm } from 'react-hook-form';
 import { LoadingPage } from './Loading';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from '../yup';
+import { FormFieldText } from './FormField';
+
+const validationSchema = yup.object({
+  username: yup.string().label('Usuário').email().required(),
+  email: yup.string().label('E-mail').email().required(),
+  password: yup.string().label('Senha').required(),
+  passwordConfirm: yup.string().label('Senha'),
+});
 
 export default function Register() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
   const [signupError, setSignupError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
   const { signup } = useUser();
   const navigate = useNavigate();
 
@@ -51,22 +67,42 @@ export default function Register() {
           </AlertPositive>
         ) : (
           <>
-            <InputFlex>
-              <Input
+            <FormFlex>
+              <FormFieldText
                 type="text"
+                label="Usuário"
                 placeholder="Usuário"
-                {...register('username')}
+                name="username"
+                register={register}
+                errors={errors}
               />
-              <Input type="text" placeholder="E-mail" {...register('email')} />
-            </InputFlex>
-            <InputFlex>
-              <Input
+              <FormFieldText
+                type="text"
+                label="E-mail"
+                placeholder="E-mail"
+                name="email"
+                register={register}
+                errors={errors}
+              />
+            </FormFlex>
+            <FormFlex>
+              <FormFieldText
                 type="password"
+                label="Senha"
                 placeholder="Senha"
-                {...register('password')}
+                name="password"
+                register={register}
+                errors={errors}
               />
-              <Input type="password" placeholder="Confirme sua senha" />
-            </InputFlex>
+              <FormFieldText
+                type="password"
+                label="Confirme sua senha"
+                placeholder="Confirme sua senha"
+                name="passwordConfirm"
+                register={register}
+                errors={errors}
+              />
+            </FormFlex>
             <CardHomeFormFooter>
               <ButtonPill type="submit" onClick={() => onSubmit}>
                 Cadastrar

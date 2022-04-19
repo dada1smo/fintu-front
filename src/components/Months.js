@@ -1,21 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  CardMonth,
-  ContainerMonths,
-  ContainerSelect,
-  MenuSelect,
-} from '../styles/Dashboard.styles';
+import { ContainerMonths, ContainerSelect } from '../styles/Dashboard.styles';
 import { monthsMock } from '../mocks/months.mock.js';
-import { Input } from '../styles/Input.styles';
-import { ButtonPill } from '../styles/Button.styles';
-import Menu from './Menu';
-import { ArrowDownIcon, MenuHorizontalIcon } from '../images/Icons';
 import { useEffect, useState } from 'react';
-import { DropdownSelect } from '../styles/Select.styles';
 import Select from './Select';
-import { Skeleton } from './Loading';
 import useFinances from '../providers/finances.provider';
-import { formatMonth, getMonthName } from '../utils/format.utils';
 import Month from './Month';
 
 export default function Months() {

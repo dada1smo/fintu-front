@@ -21,7 +21,12 @@ export const Input = styled.input`
   }
 `;
 
-export const InputFlex = styled.div`
+export const InputLabel = styled.label`
+  font-size: 12px;
+  color: ${Theme.neutral[600]};
+`;
+
+export const FormFlex = styled.div`
   display: flex;
   width: 100%;
   gap: 12px;
@@ -35,4 +40,16 @@ export const InputFlex = styled.div`
     flex-direction: column;
     gap: 16px;
   }
+`;
+
+export const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+`;
+
+export const Feedback = styled.span`
+  font-size: 12px;
+  color: ${Theme.red[900]};
 `;

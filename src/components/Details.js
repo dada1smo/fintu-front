@@ -92,7 +92,7 @@ export default function Details() {
         </ColumnDetails>
       </RowDetails>
       <RowDetails>
-        <ColumnDetails overflow>
+        <ColumnDetails overflow="auto">
           {loadingItems && <Skeleton height="44px" />}
           {monthIncomeItems.map(({ _id, title, value, category }) => {
             return (
@@ -106,7 +106,7 @@ export default function Details() {
             );
           })}
         </ColumnDetails>
-        <ColumnDetails overflow>
+        <ColumnDetails overflow="auto">
           {loadingItems && <Skeleton height="44px" />}
           {monthExpenseItems.map(({ _id, title, value, type, category }) => {
             return (
