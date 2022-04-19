@@ -10,6 +10,7 @@ export const Input = styled.input`
   font-size: 16px;
   padding: 12px 12px;
   color: ${Theme.neutral[600]};
+  transition: 0.32s;
 
   &::placeholder {
     color: ${Theme.neutral[500]};

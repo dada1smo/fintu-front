@@ -10,7 +10,7 @@ export const Button = styled.button`
   font-family: ${Theme.inter};
   font-weight: 600;
   font-size: 16px;
-  transition: 0.3s;
+  transition: 0.32s;
   outline: 0;
   border: none;
   text-decoration: none;
@@ -49,8 +49,8 @@ export const ButtonUnderlined = styled(Button)`
 `;
 
 export const ButtonIcon = styled(Button)`
-  width: 24px;
-  height: 24px;
+  width: ${(props) => (props.size === 'lg' ? '38px' : '24px')};
+  height: ${(props) => (props.size === 'lg' ? '38px' : '24px')};
   border-radius: 100%;
 
   &:hover {
