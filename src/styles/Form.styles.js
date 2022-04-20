@@ -11,6 +11,8 @@ export const Input = styled.input`
   padding: 12px 12px;
   color: ${Theme.neutral[600]};
   transition: 0.32s;
+  font-family: ${Theme.inter};
+  height: 44px;
 
   &::placeholder {
     color: ${Theme.neutral[500]};
@@ -31,7 +33,7 @@ export const FormFlex = styled.div`
   display: flex;
   width: 100%;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
 
   & input {
     width: 100%;
@@ -48,6 +50,58 @@ export const FormGroup = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 100%;
+`;
+
+export const Radio = styled.input`
+  background: ${Theme.neutral[200]};
+  outline: none;
+  border: none;
+  border: 1px solid ${Theme.neutral[600]};
+  color: ${Theme.neutral[600]};
+  transition: 0.32s;
+  appearance: none;
+  border-radius: 100%;
+  width: 16px;
+  height: 16px;
+  font-family: ${Theme.inter};
+
+  &:focus {
+    background: ${Theme.green[50]};
+  }
+
+  &:checked {
+    border: 6px solid ${Theme.green[500]};
+  }
+`;
+
+export const RadioLabel = styled.label`
+  font-size: 16px;
+  color: ${Theme.neutral[600]};
+  margin-left: 4px;
+`;
+
+export const RadioOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const FormGroupRadio = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const InputCurrency = styled(Input)`
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
 `;
 
 export const Feedback = styled.span`

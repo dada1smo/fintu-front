@@ -9,7 +9,7 @@ const ptBR = {
         case 'number':
           return 'Insira um valor válido';
         case 'string':
-          return 'Insira um valor válido';
+          return 'Campo inválido';
         case 'date':
           return 'Insira uma data válida';
         default:
@@ -20,7 +20,7 @@ const ptBR = {
   string: {
     max: '${path} precisa ter no máximo ${max} caracteres',
     length: 'O ${path} deve ter exatos ${length} caracteres',
-    email: 'O email deve ser um email válido',
+    email: 'O campo deve ser um e-mail válido',
     url: '${path} precisa ser uma url válida',
     min: '${path} precisa ter no mínimo ${min} caracteres',
   },
@@ -29,6 +29,7 @@ const ptBR = {
     min: '${path} precisa ser no mínimo ${min}',
     max: '${path} precisa ser no máximo ${max}',
     lessThan: '${path} precisa ser menor que ${less}',
+    positive: 'Insira um número positivo',
   },
   date: {
     min: '${path} deve ser posterior a ${min}',
