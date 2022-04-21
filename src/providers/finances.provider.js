@@ -4,9 +4,6 @@ import api from '../services/api';
 const FinancesContext = createContext({});
 
 export const FinancesProvider = ({ children }) => {
-  const [username, setUsername] = useState('');
-  const [token, setToken] = useState('');
-
   const getSavings = async () => {
     try {
       const response = await api.get('/financial-items/savings');
@@ -54,6 +51,15 @@ export const FinancesProvider = ({ children }) => {
     }
   };
 
+  const createFinancialItem = async (data) => {
+    try {
+      const response = await api.post('/financial-items/item', data);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <FinancesContext.Provider
       value={{
@@ -62,6 +68,7 @@ export const FinancesProvider = ({ children }) => {
         getYearBalance,
         getMonthItems,
         getMonthBalance,
+        createFinancialItem,
       }}
     >
       {children}

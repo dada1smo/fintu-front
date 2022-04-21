@@ -14,6 +14,7 @@ export default function MonthDetails() {
   const getFinancialItems = async (month) => {
     try {
       setLoadingItems(true);
+      setMonthItems([]);
       const { data } = await getMonthItems(month);
       const income = data.filter((item) => item.type === 'I');
       const expenses = data.filter((item) => item.type === 'E');
@@ -27,6 +28,7 @@ export default function MonthDetails() {
   const getBalance = async (month) => {
     try {
       setLoadingBalance(true);
+      setMonthBalance(0);
       const { data } = await getMonthBalance(month);
       setMonthBalance(data.balance);
       setLoadingBalance(false);
@@ -35,9 +37,13 @@ export default function MonthDetails() {
     }
   };
 
-  useEffect(() => {
+  const updateMonth = () => {
     getFinancialItems(month);
     getBalance(month);
+  };
+
+  useEffect(() => {
+    updateMonth();
   }, []);
 
   return (
@@ -48,6 +54,7 @@ export default function MonthDetails() {
       columnItems={monthItems}
       loadingBalance={loadingBalance}
       balance={monthBalance}
+      onPostSubmit={updateMonth}
     />
   );
 }

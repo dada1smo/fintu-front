@@ -1,5 +1,4 @@
-import { AnimatePresence, usePresence } from 'framer-motion';
-import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { DismissIcon } from '../images/Icons';
 import { ButtonIcon } from '../styles/Button.styles';
 import {

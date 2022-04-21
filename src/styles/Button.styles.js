@@ -29,8 +29,10 @@ export const Button = styled.button`
 export const ButtonPill = styled(Button)`
   padding: 6px 18px;
   border-radius: 444px;
-  border: 1px solid ${Theme.green[100]};
-  background: ${Theme.green[100]};
+  border: 1px solid
+    ${(props) => (props.disabled ? Theme.neutral[100] : Theme.green[100])};
+  background: ${(props) =>
+    props.disabled ? Theme.neutral[100] : Theme.green[100]};
 
   &:hover {
     background: ${Theme.green[200]};

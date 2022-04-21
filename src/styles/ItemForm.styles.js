@@ -9,3 +9,16 @@ export const ContainerItemForm = styled.form`
   padding: 12px 0 20px;
   gap: 20px;
 `;
+
+export const ContainerItemFormFooter = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const FormFieldThird = styled.div`
+  width: 30%;
+`;
+
+export const FormFieldHalf = styled.div`
+  width: 100%;
+`;

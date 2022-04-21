@@ -35,10 +35,6 @@ export const FormFlex = styled.div`
   gap: 12px;
   align-items: flex-start;
 
-  & input {
-    width: 100%;
-  }
-
   @media ${Device.tablet} {
     flex-direction: column;
     gap: 16px;
@@ -53,7 +49,7 @@ export const FormGroup = styled.div`
 `;
 
 export const Radio = styled.input`
-  background: ${Theme.neutral[200]};
+  background: ${Theme.neutral[50]};
   outline: none;
   border: none;
   border: 1px solid ${Theme.neutral[600]};
@@ -78,6 +74,7 @@ export const RadioLabel = styled.label`
   font-size: 16px;
   color: ${Theme.neutral[600]};
   margin-left: 4px;
+  white-space: nowrap;
 `;
 
 export const RadioOption = styled.div`
@@ -102,6 +99,36 @@ export const InputCurrency = styled(Input)`
     appearance: none;
     margin: 0;
   }
+`;
+
+export const HiddenCheckbox = styled.input`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+export const CheckboxCheck = styled.svg`
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background: ${(props) =>
+    props.checked ? Theme.green[500] : Theme.neutral[50]};
+  border: ${(props) =>
+    props.checked
+      ? `1px solid ${Theme.green[500]}`
+      : `1px solid ${Theme.neutral[600]}`};
+  margin-right: 4px;
+  transition: 0.24s;
+`;
+
+export const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const Feedback = styled.span`

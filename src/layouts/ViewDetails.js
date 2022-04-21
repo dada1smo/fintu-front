@@ -31,6 +31,7 @@ export default function ViewDetails({
   columnItems,
   loadingBalance,
   balance,
+  onPostSubmit,
 }) {
   const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -120,7 +121,7 @@ export default function ViewDetails({
         setOpen={setFinancialItemModalOpen}
         title="Adicionar item"
       >
-        <FinancialItemForm />
+        <FinancialItemForm onPostSubmit={onPostSubmit} />
       </Modal>
     </>
   );
