@@ -58,23 +58,13 @@ export function FormFieldRadio({
         {options.map(({ optionId, label, value }) => {
           return (
             <RadioOption key={optionId}>
-              {register ? (
-                <Radio
-                  id={optionId}
-                  name={name}
-                  type="radio"
-                  value={value}
-                  {...register(name)}
-                />
-              ) : (
-                <Radio
-                  id={optionId}
-                  name={name}
-                  type="radio"
-                  value={value}
-                  onChange={onChange}
-                />
-              )}
+              <Radio
+                id={optionId}
+                name={name}
+                type="radio"
+                value={value}
+                {...register(name)}
+              />
               <RadioLabel htmlFor={optionId}>{label}</RadioLabel>
             </RadioOption>
           );

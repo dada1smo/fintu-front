@@ -60,6 +60,23 @@ export const FinancesProvider = ({ children }) => {
     }
   };
 
+  const updateFinancialItem = async (data) => {
+    const { id, title, type, value, date, category } = data;
+
+    try {
+      const response = await api.put(`/financial-items/item/${id}`, {
+        title,
+        type,
+        value,
+        date,
+        category,
+      });
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <FinancesContext.Provider
       value={{
@@ -69,6 +86,7 @@ export const FinancesProvider = ({ children }) => {
         getMonthItems,
         getMonthBalance,
         createFinancialItem,
+        updateFinancialItem,
       }}
     >
       {children}

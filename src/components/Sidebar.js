@@ -19,7 +19,7 @@ import useFinances from '../providers/finances.provider';
 import { formatCurrency } from '../utils/format.utils';
 
 export default function Sidebar() {
-  const [userMenuOpen, setUserMenuOpen] = useState();
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [userSavings, setUserSavings] = useState(0);
   const [loadingUserSavings, setLoadingUserSavings] = useState(false);
   const { logout, username } = useUser();

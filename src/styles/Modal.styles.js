@@ -29,13 +29,30 @@ export const WrapperModal = styled(motion.div)`
 
 export const ContainerModal = styled(motion.div)`
   background: ${Theme.neutral['000']};
-  width: 48vw;
+  width: auto;
+  min-width: 32vw;
+  max-width: 60vw;
   position: relative;
   padding: 20px 24px;
   z-index: 104;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @media ${Device.laptopL} {
+    min-width: 44vw;
+    max-width: 68vw;
+  }
+
+  @media ${Device.laptop} {
+    min-width: 60vw;
+    max-width: 68vw;
+  }
+
+  @media ${Device.tablet} {
+    min-width: 92vw;
+    max-width: 96vw;
+  }
 `;
 
 export const ContainerModalHeader = styled.div`

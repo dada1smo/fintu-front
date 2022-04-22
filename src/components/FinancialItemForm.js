@@ -31,7 +31,7 @@ const validationSchema = yup.object({
   installments: yup.number().min(2).integer().label('Parcelas').nullable(),
 });
 
-export default function FinancialItemForm({ onPostSubmit }) {
+export default function FinancialItemForm({ onPostSubmit, item }) {
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [isRecurring, setIsRecurring] = useState('Não');
@@ -40,14 +40,24 @@ export default function FinancialItemForm({ onPostSubmit }) {
   const [userCategories, setUserCategories] = useState([]);
   const [categoriesMenuOpen, setCategoriesMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const itemValues = {
+    ...item,
+    id: item?._id,
+    date: item?.date.toString().slice(0, 10),
+    value: item?.value / 100,
+  };
   const {
     register,
     handleSubmit,
     control,
     reset,
+    getValues,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(validationSchema) });
-  const { createFinancialItem } = useFinances();
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: itemValues,
+  });
+  const { createFinancialItem, updateFinancialItem } = useFinances();
   const { getCategories } = useCategories();
 
   const typeOptions = [
@@ -115,12 +125,24 @@ export default function FinancialItemForm({ onPostSubmit }) {
       const { data } = await getCategories();
       setUserCategories(data);
       setLoadingCategories(false);
+
+      if (item.category) {
+        const defaultCategory = data.find(
+          (category) => category._id === item.category._id
+        );
+
+        setSelectedCategory({
+          id: defaultCategory?._id,
+          title: defaultCategory?.title,
+          color: defaultCategory?.color,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onSubmit = async (data) => {
+  const onCreateSubmit = async (data) => {
     const formatValue = Math.round(Number(data.value) * 100);
 
     try {
@@ -141,18 +163,43 @@ export default function FinancialItemForm({ onPostSubmit }) {
     }
   };
 
+  const onUpdateSubmit = async (data) => {
+    const formatValue = Math.round(Number(data.value) * 100);
+
+    try {
+      setLoading(true);
+      setLoginError('');
+      await updateFinancialItem({
+        ...data,
+        value: formatValue,
+        category: selectedCategory?.id,
+      });
+    } catch (error) {
+      setLoginError(error.response.data.msg);
+    } finally {
+      setLoading(false);
+      onPostSubmit();
+    }
+  };
+
+  const onSubmit = (data) => {
+    if (item) {
+      onUpdateSubmit(data);
+    } else onCreateSubmit(data);
+  };
+
   useEffect(() => {
     getUserCategories();
   }, []);
 
   useEffect(() => {
-    reset({
-      recurring: false,
-      installments: null,
-    });
+    if (!item) {
+      reset({
+        recurring: false,
+        installments: null,
+      });
+    }
   }, [isRecurring]);
-
-  console.log(selectedCategory);
 
   return (
     <ContainerItemForm onSubmit={handleSubmit(onSubmit)}>
@@ -188,15 +235,17 @@ export default function FinancialItemForm({ onPostSubmit }) {
         />
       </FormFlex>
       <FormFlex>
-        <FormFieldHalf>
-          <InputLabel>O item é recorrente ou parcelado?</InputLabel>
-          <Select
-            initialValue={isRecurring}
-            open={menuOpen}
-            setOpen={setMenuOpen}
-            items={recurringInstallmentOptions}
-          />
-        </FormFieldHalf>
+        {!item && (
+          <FormFieldHalf>
+            <InputLabel>O item é recorrente ou parcelado?</InputLabel>
+            <Select
+              initialValue={isRecurring}
+              open={menuOpen}
+              setOpen={setMenuOpen}
+              items={recurringInstallmentOptions}
+            />
+          </FormFieldHalf>
+        )}
         <FormFieldHalf>
           <InputLabel>Qual a categoria do item?</InputLabel>
           {loadingCategories ? (
@@ -212,34 +261,46 @@ export default function FinancialItemForm({ onPostSubmit }) {
           )}
         </FormFieldHalf>
       </FormFlex>
-      <FormFlex>
-        {isRecurring === 'Recorrente' && (
-          <FormFieldCheckbox
-            name="recurring"
-            label="Item recorrente"
-            register={register}
-            errors={errors}
-            control={control}
-          />
-        )}
-        {isRecurring === 'Parcelado' && (
-          <FormFieldThird>
-            <FormFieldText
-              name="installments"
-              label="Parcelas"
-              type="number"
-              placeholder="2"
-              step="1"
+      {!item && (
+        <FormFlex>
+          {isRecurring === 'Recorrente' && (
+            <FormFieldCheckbox
+              name="recurring"
+              label="Item recorrente"
               register={register}
               errors={errors}
+              control={control}
             />
-          </FormFieldThird>
-        )}
-      </FormFlex>
+          )}
+          {isRecurring === 'Parcelado' && (
+            <FormFieldThird>
+              <FormFieldText
+                name="installments"
+                label="Parcelas"
+                type="number"
+                placeholder="2"
+                step="1"
+                register={register}
+                errors={errors}
+              />
+            </FormFieldThird>
+          )}
+        </FormFlex>
+      )}
       <ContainerItemFormFooter>
-        <ButtonPill onClick={() => onSubmit} type="submit" disabled={loading}>
-          {loading ? 'Adicionando item...' : 'Confirmar'}
-        </ButtonPill>
+        {item ? (
+          <ButtonPill
+            onClick={() => onUpdateSubmit}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Atualizando item...' : 'Editar item'}
+          </ButtonPill>
+        ) : (
+          <ButtonPill onClick={() => onSubmit} type="submit" disabled={loading}>
+            {loading ? 'Adicionando item...' : 'Confirmar'}
+          </ButtonPill>
+        )}
       </ContainerItemFormFooter>
     </ContainerItemForm>
   );

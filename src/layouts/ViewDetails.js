@@ -89,14 +89,16 @@ export default function ViewDetails({
             return (
               <ColumnDetails overflow="auto" key={key}>
                 {loadingItems && <Skeleton height="44px" />}
-                {column.map(({ _id, title, value, category }) => {
+                {column.map((item) => {
                   return (
                     <FinancialItem
-                      key={_id}
-                      id={_id}
-                      title={title}
-                      value={value}
-                      category={category}
+                      key={item._id}
+                      id={item._id}
+                      title={item.title}
+                      value={item.value}
+                      category={item.category}
+                      item={item}
+                      onPostSubmit={onPostSubmit}
                     />
                   );
                 })}
