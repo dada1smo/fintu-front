@@ -197,7 +197,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
 
   useEffect(() => {
     getUserCategories();
-  }, [getUserCategories]);
+  }, []);
 
   useEffect(() => {
     if (!item) {
