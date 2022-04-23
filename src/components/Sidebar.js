@@ -72,9 +72,9 @@ export default function Sidebar() {
           />
         </SidebarUserMenu>
         <SidebarWallet>
-          <Label>Cofre</Label>
+          <Label>Economias</Label>
           {loadingUserSavings ? (
-            <Skeleton height="44px" />
+            <Skeleton height="40px" />
           ) : (
             <Summary>
               <SavingsIcon />
@@ -83,8 +83,9 @@ export default function Sidebar() {
           )}
         </SidebarWallet>
         <SidebarContent>
-          <ButtonUnderlined>Editar carteira</ButtonUnderlined>
-          <ButtonUnderlined>Ver itens recorrentes</ButtonUnderlined>
+          <ButtonUnderlined>Economias</ButtonUnderlined>
+          <ButtonUnderlined>Itens recorrentes</ButtonUnderlined>
+          <ButtonUnderlined>Categorias</ButtonUnderlined>
         </SidebarContent>
       </SidebarContainer>
     </SidebarDashboard>

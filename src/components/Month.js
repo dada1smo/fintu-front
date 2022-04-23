@@ -35,14 +35,13 @@ export default function Month({ month, balance, loadingBalance }) {
     <CardMonth current={checkCurrentMonth(month)}>
       <CardMonthHeader>
         {loadingBalance ? (
-          <Skeleton height="24px" width="64px" />
+          <Skeleton height="24px" width="72px" />
         ) : (
           <Label>{formatMonth(month)}</Label>
         )}
         <H2>{getMonthName(month)}</H2>
       </CardMonthHeader>
-      {loadingBalance && <Skeleton height="44px" />}
-      {balance !== 'No data' && (
+      {balance !== 'No data' && !loadingBalance && (
         <Summary>
           <ReceiptIcon />
           <Value negative={balance < 0}>{formatCurrency(balance)}</Value>
@@ -52,7 +51,7 @@ export default function Month({ month, balance, loadingBalance }) {
         <ButtonUnderlined
           onClick={() => navigate(`/dashboard/details/${month}`)}
         >
-          Ver detalhes
+          Detalhes
         </ButtonUnderlined>
       </CardMonthFooter>
     </CardMonth>
