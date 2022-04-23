@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext } from 'react';
 import api from '../services/api';
 
 const FinancesContext = createContext({});
@@ -77,6 +77,14 @@ export const FinancesProvider = ({ children }) => {
     }
   };
 
+  const deleteFinancialItem = async (id) => {
+    try {
+      await api.delete(`/financial-items/item/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <FinancesContext.Provider
       value={{
@@ -87,6 +95,7 @@ export const FinancesProvider = ({ children }) => {
         getMonthBalance,
         createFinancialItem,
         updateFinancialItem,
+        deleteFinancialItem,
       }}
     >
       {children}

@@ -30,11 +30,11 @@ export const ContainerSelect = styled.div`
   top: 0;
   background: ${Theme.neutral[50]};
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 0 12px;
-  z-index: 200;
+  z-index: 100;
 `;
 
 export const CardMonth = styled.div`

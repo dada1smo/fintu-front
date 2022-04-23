@@ -36,7 +36,7 @@ export const Strong = styled.div`
   font-family: ${Theme.inter};
   font-size: 16px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 24px;
   color: ${Theme.neutral[600]};
 `;
 
@@ -44,7 +44,7 @@ export const Value = styled.div`
   font-family: ${Theme.inter};
   font-size: 16px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 24px;
   color: ${(props) => (props.negative ? Theme.red[900] : Theme.neutral[600])};
   white-space: nowrap;
 `;

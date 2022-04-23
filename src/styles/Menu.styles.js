@@ -20,7 +20,7 @@ export const AnchorMenu = styled.div`
 
 export const ContainerMenu = styled(motion.div)`
   background: ${Theme.neutral['000']};
-  width: 120px;
+  width: 132px;
   position: absolute;
   z-index: 104;
   left: 0;

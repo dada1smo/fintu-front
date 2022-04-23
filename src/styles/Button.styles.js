@@ -39,10 +39,22 @@ export const ButtonPill = styled(Button)`
   }
 `;
 
+export const ButtonPillCaution = styled(ButtonPill)`
+  border: 1px solid
+    ${(props) => (props.disabled ? Theme.neutral[100] : Theme.red[100])};
+  background: ${(props) =>
+    props.disabled ? Theme.neutral[100] : Theme.red[100]};
+
+  &:hover {
+    background: ${Theme.red[200]};
+  }
+`;
+
 export const ButtonUnderlined = styled(Button)`
   padding: 6px 0;
   border-bottom: 1px solid ${Theme.neutral[600]};
   background: transparent;
+  text-align: right;
 
   &:hover {
     color: ${Theme.green[700]};

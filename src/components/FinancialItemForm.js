@@ -165,6 +165,13 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
 
   const onUpdateSubmit = async (data) => {
     const formatValue = Math.round(Number(data.value) * 100);
+    const itemCategory = (category) => {
+      if (category?.id) {
+        return category.id;
+      }
+
+      return null;
+    };
 
     try {
       setLoading(true);
@@ -172,7 +179,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
       await updateFinancialItem({
         ...data,
         value: formatValue,
-        category: selectedCategory?.id,
+        category: itemCategory(selectedCategory),
       });
     } catch (error) {
       setLoginError(error.response.data.msg);
@@ -190,7 +197,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
 
   useEffect(() => {
     getUserCategories();
-  }, []);
+  }, [getUserCategories]);
 
   useEffect(() => {
     if (!item) {
@@ -199,7 +206,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
         installments: null,
       });
     }
-  }, [isRecurring]);
+  }, []);
 
   return (
     <ContainerItemForm onSubmit={handleSubmit(onSubmit)}>

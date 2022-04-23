@@ -60,3 +60,9 @@ export const ContainerModalHeader = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const ContainerModalFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
