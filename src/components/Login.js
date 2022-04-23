@@ -5,21 +5,31 @@ import {
   CardHomeForm,
   CardHomeFormFooter,
 } from '../styles/Home.styles';
-import { Input } from '../styles/Input.styles';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useUser from '../providers/user.provider';
 import { useState } from 'react';
-import { LoadingPageOverlay } from '../styles/Loading.styles';
 import { LoadingPage } from './Loading';
 import { AlertNegative } from '../styles/Alert.styles';
 import { ErrorIcon } from '../images/Icons';
+import { FormFieldText } from './FormField';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from '../yup';
+
+const validationSchema = yup.object({
+  email: yup.string().label('E-mail').email().required(),
+  password: yup.string().label('Senha').required(),
+});
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
-  const { register, handleSubmit } = useForm();
-  const { login, username } = useUser();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validationSchema) });
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -44,8 +54,22 @@ export default function Login() {
             {loginError}
           </AlertNegative>
         )}
-        <Input type="text" placeholder="Usuário" {...register('email')} />
-        <Input type="password" placeholder="Senha" {...register('password')} />
+        <FormFieldText
+          type="text"
+          label="E-mail"
+          placeholder="E-mail"
+          name="email"
+          register={register}
+          errors={errors}
+        />
+        <FormFieldText
+          type="password"
+          label="Senha"
+          placeholder="Senha"
+          name="password"
+          register={register}
+          errors={errors}
+        />
 
         <CardHomeFormFooter>
           <ButtonPill onClick={() => onSubmit} type="submit">

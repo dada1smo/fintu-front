@@ -1,30 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  CardMonth,
-  ContainerMonths,
-  ContainerSelect,
-  MenuSelect,
-} from '../styles/Dashboard.styles';
+import { ContainerMonths, ContainerSelect } from '../styles/Dashboard.styles';
 import { monthsMock } from '../mocks/months.mock.js';
-import { Input } from '../styles/Input.styles';
-import { ButtonPill } from '../styles/Button.styles';
-import Menu from './Menu';
-import { ArrowDownIcon, MenuHorizontalIcon } from '../images/Icons';
 import { useEffect, useState } from 'react';
-import { DropdownSelect } from '../styles/Select.styles';
 import Select from './Select';
-import { Skeleton } from './Loading';
 import useFinances from '../providers/finances.provider';
-import { formatMonth, getMonthName } from '../utils/format.utils';
 import Month from './Month';
+import Modal from './Modal';
+import FinancialItemForm from './FinancialItemForm';
+import { ButtonUnderlined } from '../styles/Button.styles';
 
 export default function Months() {
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [yearsOptions, setYearsOptions] = useState([]);
   const [yearBalance, setYearBalance] = useState([...monthsMock]);
-  const [yearSelectMenuOpen, setYearSelectMenuOpen] = useState();
+  const [yearSelectMenuOpen, setYearSelectMenuOpen] = useState(false);
   const [loadingBalance, setLoadingBalance] = useState(false);
+  const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
   const { getYears, getYearBalance } = useFinances();
 
   const getUserYears = async () => {
@@ -63,26 +55,45 @@ export default function Months() {
     };
   });
 
+  const updateMonths = () => {
+    getSelectedYearBalance(selectedYear);
+    getUserYears();
+  };
+
   return (
-    <ContainerMonths>
-      <ContainerSelect>
-        <Select
-          initialValue={selectedYear}
-          open={yearSelectMenuOpen}
-          setOpen={setYearSelectMenuOpen}
-          items={userYearOptions}
-        />
-      </ContainerSelect>
-      {yearBalance.map(({ month, balance }) => {
-        return (
-          <Month
-            key={month}
-            month={month}
-            balance={balance}
-            loadingBalance={loadingBalance}
+    <>
+      <ContainerMonths>
+        <ContainerSelect>
+          <Select
+            initialValue={selectedYear}
+            open={yearSelectMenuOpen}
+            setOpen={setYearSelectMenuOpen}
+            items={userYearOptions}
           />
-        );
-      })}
-    </ContainerMonths>
+          <ButtonUnderlined
+            onClick={() => setFinancialItemModalOpen(!financialItemModalOpen)}
+          >
+            Adicionar item
+          </ButtonUnderlined>
+        </ContainerSelect>
+        {yearBalance.map(({ month, balance }) => {
+          return (
+            <Month
+              key={month}
+              month={month}
+              balance={balance}
+              loadingBalance={loadingBalance}
+            />
+          );
+        })}
+      </ContainerMonths>
+      <Modal
+        open={financialItemModalOpen}
+        setOpen={setFinancialItemModalOpen}
+        title="Adicionar item"
+      >
+        <FinancialItemForm onPostSubmit={updateMonths} />
+      </Modal>
+    </>
   );
 }

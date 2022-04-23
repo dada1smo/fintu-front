@@ -1,12 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext } from 'react';
 import api from '../services/api';
 
 const FinancesContext = createContext({});
 
 export const FinancesProvider = ({ children }) => {
-  const [username, setUsername] = useState('');
-  const [token, setToken] = useState('');
-
   const getSavings = async () => {
     try {
       const response = await api.get('/financial-items/savings');
@@ -54,6 +51,40 @@ export const FinancesProvider = ({ children }) => {
     }
   };
 
+  const createFinancialItem = async (data) => {
+    try {
+      const response = await api.post('/financial-items/item', data);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const updateFinancialItem = async (data) => {
+    const { id, title, type, value, date, category } = data;
+
+    try {
+      const response = await api.put(`/financial-items/item/${id}`, {
+        title,
+        type,
+        value,
+        date,
+        category,
+      });
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const deleteFinancialItem = async (id) => {
+    try {
+      await api.delete(`/financial-items/item/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <FinancesContext.Provider
       value={{
@@ -62,6 +93,9 @@ export const FinancesProvider = ({ children }) => {
         getYearBalance,
         getMonthItems,
         getMonthBalance,
+        createFinancialItem,
+        updateFinancialItem,
+        deleteFinancialItem,
       }}
     >
       {children}

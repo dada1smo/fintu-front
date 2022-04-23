@@ -30,6 +30,8 @@ export const DropdownSelect = styled.div`
   position: relative;
   transition: 0.1s;
   cursor: pointer;
+  max-height: 46px;
+  transition: 0.32s;
 
   &:hover {
     background: ${Theme.green[50]};
@@ -40,6 +42,7 @@ export const DropdownSelect = styled.div`
     width: 20px;
     height: 20px;
     transform: ${(props) => (props.open ? 'rotate(-180deg)' : 'none')};
+    transition: 0.32s;
   }
 `;
 

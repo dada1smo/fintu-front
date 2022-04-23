@@ -41,7 +41,7 @@ export const ColumnDetails = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   padding-bottom: ${(props) => (props.overflow ? '20px' : '0')};
   overflow-y: ${(props) => (props.overflow ? 'auto' : 'hidden')};
 

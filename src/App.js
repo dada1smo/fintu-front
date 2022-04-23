@@ -5,13 +5,16 @@ import '@fontsource/inter/700.css';
 import { UserProvider } from './providers/user.provider';
 import AppRouter from './components/AppRouter';
 import { FinancesProvider } from './providers/finances.provider';
+import { CategoriesProvider } from './providers/categories.provider';
 
 function App() {
   return (
     <UserProvider>
       <FinancesProvider>
-        <GlobalStyles />
-        <AppRouter />
+        <CategoriesProvider>
+          <GlobalStyles />
+          <AppRouter />
+        </CategoriesProvider>
       </FinancesProvider>
     </UserProvider>
   );

@@ -6,12 +6,26 @@ import {
   ItemSelect,
   ListSelect,
 } from '../styles/Select.styles';
+import Category from './Category';
 
-export default function Select({ initialValue, open, setOpen, items }) {
+export default function Select({
+  initialValue,
+  open,
+  setOpen,
+  items,
+  selectedComponent,
+}) {
+  const selectedCategory = (
+    <Category
+      title={selectedComponent?.title}
+      color={selectedComponent?.color}
+    />
+  );
+
   return (
     <>
       <DropdownSelect open={open} onClick={() => setOpen(!open)}>
-        {initialValue} <ArrowDownIcon />
+        {selectedComponent ? selectedCategory : initialValue} <ArrowDownIcon />
         {open && (
           <ContainerSelect
             animate={{ opacity: 1 }}
@@ -19,10 +33,10 @@ export default function Select({ initialValue, open, setOpen, items }) {
             transition={{ duration: 0.05 }}
           >
             <ListSelect>
-              {items.map(({ label, action }) => {
+              {items.map(({ label, action, component }) => {
                 return (
                   <ItemSelect key={label} onClick={action}>
-                    {label}
+                    {component ? component : label}
                   </ItemSelect>
                 );
               })}
