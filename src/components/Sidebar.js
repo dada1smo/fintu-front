@@ -30,13 +30,6 @@ export default function Sidebar() {
 
   const userActions = [
     {
-      label: 'Ver perfil',
-      action: () => {
-        console.log('saí');
-        setUserMenuOpen(!userMenuOpen);
-      },
-    },
-    {
       label: 'Sair',
       action: () => {
         logout();
