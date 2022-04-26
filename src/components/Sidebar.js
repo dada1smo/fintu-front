@@ -17,6 +17,7 @@ import useUser from '../providers/user.provider';
 import { Skeleton } from './Loading';
 import useFinances from '../providers/finances.provider';
 import { formatCurrency } from '../utils/format.utils';
+import { useNavigate } from 'react-router';
 
 export default function Sidebar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -24,6 +25,8 @@ export default function Sidebar() {
   const [loadingUserSavings, setLoadingUserSavings] = useState(false);
   const { logout, username } = useUser();
   const { getSavings } = useFinances();
+
+  const navigate = useNavigate();
 
   const userActions = [
     {
@@ -72,7 +75,7 @@ export default function Sidebar() {
           />
         </SidebarUserMenu>
         <SidebarWallet>
-          <Label>Economias</Label>
+          <Label>Balanço</Label>
           {loadingUserSavings ? (
             <Skeleton height="40px" />
           ) : (
@@ -83,8 +86,9 @@ export default function Sidebar() {
           )}
         </SidebarWallet>
         <SidebarContent>
-          <ButtonUnderlined>Economias</ButtonUnderlined>
-          <ButtonUnderlined>Itens recorrentes</ButtonUnderlined>
+          <ButtonUnderlined onClick={() => navigate('/dashboard/savings')}>
+            Economias
+          </ButtonUnderlined>
           <ButtonUnderlined>Categorias</ButtonUnderlined>
         </SidebarContent>
       </SidebarContainer>

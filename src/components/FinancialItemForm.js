@@ -29,9 +29,10 @@ const validationSchema = yup.object({
   date: yup.string().label('Data').required(),
   recurring: yup.boolean().label('Item recorrente').nullable(),
   installments: yup.number().min(2).integer().label('Parcelas').nullable(),
+  savings: yup.boolean().label('Economias').nullable(),
 });
 
-export default function FinancialItemForm({ onPostSubmit, item }) {
+export default function FinancialItemForm({ onPostSubmit, item, savings }) {
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [isRecurring, setIsRecurring] = useState('Não');
@@ -126,7 +127,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
       setUserCategories(data);
       setLoadingCategories(false);
 
-      if (item.category) {
+      if (item?.category) {
         const defaultCategory = data.find(
           (category) => category._id === item.category._id
         );
@@ -233,16 +234,18 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
           register={register}
           errors={errors}
         />
-        <FormFieldText
-          type="date"
-          name="date"
-          label="Data"
-          register={register}
-          errors={errors}
-        />
+        {!item?.recurrenceEnd && (
+          <FormFieldText
+            type="date"
+            name="date"
+            label="Data"
+            register={register}
+            errors={errors}
+          />
+        )}
       </FormFlex>
       <FormFlex>
-        {!item && (
+        {!item && !savings && (
           <FormFieldHalf>
             <InputLabel>O item é recorrente ou parcelado?</InputLabel>
             <Select
@@ -268,7 +271,7 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
           )}
         </FormFieldHalf>
       </FormFlex>
-      {!item && (
+      {!item && savings && (
         <FormFlex>
           {isRecurring === 'Recorrente' && (
             <FormFieldCheckbox
@@ -291,6 +294,15 @@ export default function FinancialItemForm({ onPostSubmit, item }) {
                 errors={errors}
               />
             </FormFieldThird>
+          )}
+          {savings && (
+            <FormFieldCheckbox
+              name="savings"
+              label="O item faz parte das economias"
+              register={register}
+              errors={errors}
+              control={control}
+            />
           )}
         </FormFlex>
       )}
