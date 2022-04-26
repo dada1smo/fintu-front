@@ -4,6 +4,7 @@ import useFinances from '../providers/finances.provider';
 import { ButtonIcon, ButtonPillCaution } from '../styles/Button.styles';
 import {
   ItemDetails,
+  ItemDetailsFooter,
   ItemDetailsStart,
   ItemDetailsSummary,
 } from '../styles/Details.styles';
@@ -14,6 +15,8 @@ import Category from './Category';
 import FinancialItemForm from './FinancialItemForm';
 import Menu from './Menu';
 import Modal from './Modal';
+import RecurrenceEndForm from './RecurrenceEndForm';
+import RecurringBadge from './RecurringBadge';
 
 export default function FinancialItem({
   id,
@@ -27,9 +30,11 @@ export default function FinancialItem({
   const [itemMenuOpen, setItemMenuOpen] = useState(false);
   const [itemModalOpen, setItemModalOpen] = useState(false);
   const [deleteItemModalOpen, setDeleteItemModalOpen] = useState(false);
+  const [endRecurrenceItemModalOpen, setEndRecurrenceItemModalOpen] =
+    useState(false);
   const { deleteFinancialItem } = useFinances();
 
-  const itemActions = [
+  const defaultActions = [
     {
       label: 'Editar item',
       action: () => {
@@ -45,6 +50,21 @@ export default function FinancialItem({
       },
     },
   ];
+
+  const itemActions = (items) => {
+    const actions = [...items];
+    if (item.recurring === true) {
+      actions.push({
+        label: 'Encerrar recorrência',
+        action: () => {
+          setEndRecurrenceItemModalOpen(!endRecurrenceItemModalOpen);
+          setItemMenuOpen(!itemMenuOpen);
+        },
+      });
+    }
+
+    return actions;
+  };
 
   const checkNegative = (amount, type) => {
     if (type === 'E') {
@@ -73,13 +93,16 @@ export default function FinancialItem({
           <Menu
             open={itemMenuOpen}
             setOpen={setItemMenuOpen}
-            items={itemActions}
+            items={itemActions(defaultActions)}
           />
           <ItemDetailsSummary>
             <Strong>{title}</Strong>
-            {category && (
-              <Category title={category.title} color={category.color} />
-            )}
+            <ItemDetailsFooter>
+              {item.recurring === true && <RecurringBadge />}
+              {category && (
+                <Category title={category.title} color={category.color} />
+              )}
+            </ItemDetailsFooter>
           </ItemDetailsSummary>
         </ItemDetailsStart>
         <Value negative={checkNegative(value, type) < 0}>
@@ -103,6 +126,17 @@ export default function FinancialItem({
             Excluir
           </ButtonPillCaution>
         </ContainerModalFooter>
+      </Modal>
+      <Modal
+        open={endRecurrenceItemModalOpen}
+        setOpen={setEndRecurrenceItemModalOpen}
+        title="Qual a data final de recorrência do item?"
+      >
+        <RecurrenceEndForm
+          onPostSubmit={onPostSubmit}
+          itemId={id}
+          itemRecurrenceEnd={item.recurrenceEnd}
+        />
       </Modal>
     </>
   );

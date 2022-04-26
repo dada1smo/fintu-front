@@ -61,7 +61,7 @@ export const FinancesProvider = ({ children }) => {
   };
 
   const updateFinancialItem = async (data) => {
-    const { id, title, type, value, date, category } = data;
+    const { id, title, type, value, date, category, recurrenceEnd } = data;
 
     try {
       const response = await api.put(`/financial-items/item/${id}`, {
@@ -70,6 +70,7 @@ export const FinancesProvider = ({ children }) => {
         value,
         date,
         category,
+        recurrenceEnd,
       });
       return response;
     } catch (error) {
@@ -80,6 +81,24 @@ export const FinancesProvider = ({ children }) => {
   const deleteFinancialItem = async (id) => {
     try {
       await api.delete(`/financial-items/item/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const getSavingsItems = async () => {
+    try {
+      const response = await api.get('/financial-items/savings/items');
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const getSavingsBalance = async () => {
+    try {
+      const response = await api.get('/financial-items/savings/balance');
+      return response;
     } catch (error) {
       throw error;
     }
@@ -96,6 +115,8 @@ export const FinancesProvider = ({ children }) => {
         createFinancialItem,
         updateFinancialItem,
         deleteFinancialItem,
+        getSavingsItems,
+        getSavingsBalance,
       }}
     >
       {children}

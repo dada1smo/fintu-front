@@ -6,7 +6,7 @@ export const ContainerItemForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 12px 0 20px;
+  padding: 12px 0 0;
   gap: 20px;
 `;
 

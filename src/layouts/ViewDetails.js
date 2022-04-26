@@ -32,6 +32,7 @@ export default function ViewDetails({
   loadingBalance,
   balance,
   onPostSubmit,
+  savings,
 }) {
   const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -53,18 +54,20 @@ export default function ViewDetails({
             </ButtonUnderlined>
           </ContainerDetailsActions>
         </ContainerDetailsHeader>
-        <ContainerDetailsHeader>
-          <ContainerDetailsTitle>
-            {month ? (
-              <>
-                <Label>{formatMonth(month)}</Label>
-                <H2>{getMonthName(month)}</H2>
-              </>
-            ) : (
-              <H2>{title}</H2>
-            )}
-          </ContainerDetailsTitle>
-        </ContainerDetailsHeader>
+        {!savings && (
+          <ContainerDetailsHeader>
+            <ContainerDetailsTitle>
+              {month ? (
+                <>
+                  <Label>{formatMonth(month)}</Label>
+                  <H2>{getMonthName(month)}</H2>
+                </>
+              ) : (
+                <H2>{title}</H2>
+              )}
+            </ContainerDetailsTitle>
+          </ContainerDetailsHeader>
+        )}
         <RowDetails>
           {columnNames.map((column, key) => {
             return (
@@ -84,7 +87,7 @@ export default function ViewDetails({
             </ColumnDetails>
           </RowDetails>
         )}
-        <RowDetails>
+        <RowDetails fullHeight>
           {columnItems.map((column, key) => {
             return (
               <ColumnDetails overflow="auto" key={key}>
@@ -123,7 +126,7 @@ export default function ViewDetails({
         setOpen={setFinancialItemModalOpen}
         title="Adicionar item"
       >
-        <FinancialItemForm onPostSubmit={onPostSubmit} />
+        <FinancialItemForm onPostSubmit={onPostSubmit} savings />
       </Modal>
     </>
   );

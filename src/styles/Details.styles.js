@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
 import { Device } from './Breakpoints.styles';
+import { motion } from 'framer-motion';
 
 export const ContainerDetails = styled.div`
   grid-column: 4 / span 9;
@@ -35,10 +36,11 @@ export const RowDetails = styled.div`
   display: flex;
   gap: 32px;
   overflow: hidden;
+  flex: ${(props) => (props.fullHeight ? '1 1 auto' : '0 0 auto')};
 `;
 
 export const ColumnDetails = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -77,6 +79,12 @@ export const ItemDetailsSummary = styled.div`
   width: auto;
 `;
 
+export const ItemDetailsFooter = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
 export const ContainerDetailsFooter = styled.div`
   position: absolute;
   bottom: 0;
@@ -94,4 +102,17 @@ export const ContainerDetailsFooter = styled.div`
 export const ContainerDetailsFooterSummary = styled.div`
   display: flex;
   gap: 12px;
+`;
+
+export const ContainerBadge = styled(motion.div)`
+  padding: 0 8px;
+  background: ${Theme.neutral['000']};
+  display: inline-flex;
+`;
+
+export const TypeBadge = styled(motion.div)`
+  font-size: 12px;
+  line-height: 24px;
+  color: ${Theme.green[700]};
+  font-weight: 600;
 `;
