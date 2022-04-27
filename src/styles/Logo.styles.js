@@ -5,6 +5,7 @@ export const Logo = styled.img`
   width: 88px;
   height: 36px;
   margin: 16px 0;
+  cursor: pointer;
 
   @media ${Device.laptopL} {
     width: 68px;

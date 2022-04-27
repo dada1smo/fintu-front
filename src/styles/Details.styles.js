@@ -105,14 +105,20 @@ export const ContainerDetailsFooterSummary = styled.div`
 `;
 
 export const ContainerBadge = styled(motion.div)`
-  padding: 0 8px;
-  background: ${Theme.neutral['000']};
+  height: 24px;
+  width: 24px;
+  /* background: ${Theme.neutral['000']}; */
   display: inline-flex;
 `;
 
 export const TypeBadge = styled(motion.div)`
-  font-size: 12px;
-  line-height: 24px;
   color: ${Theme.green[700]};
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 20px;
+    width: 20px;
+  }
 `;

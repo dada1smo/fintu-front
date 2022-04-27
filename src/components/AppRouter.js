@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Register from './Register';
 import SavingsDetails from './SavingsDetails';
+import CategoriesDetails from './CategoriesDetails';
 
 export default function AppRouter() {
   const { token } = useUser();
@@ -26,6 +27,7 @@ export default function AppRouter() {
           <Route path="/dashboard" element={<Months />} />
           <Route path="/dashboard/details/:month" element={<MonthDetails />} />
           <Route path="/dashboard/savings" element={<SavingsDetails />} />
+          <Route path="/dashboard/categories" element={<CategoriesDetails />} />
         </Route>
       </Route>
     </Routes>

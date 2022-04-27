@@ -308,11 +308,7 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
       )}
       <ContainerItemFormFooter>
         {item ? (
-          <ButtonPill
-            onClick={() => onUpdateSubmit}
-            type="submit"
-            disabled={loading}
-          >
+          <ButtonPill onClick={() => onSubmit} type="submit" disabled={loading}>
             {loading ? 'Atualizando item...' : 'Editar item'}
           </ButtonPill>
         ) : (

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import CategoryForm from '../components/CategoryForm';
+import CategoryItem from '../components/CategoryItem';
 import FinancialItem from '../components/FinancialItem';
 import FinancialItemForm from '../components/FinancialItemForm';
 import { Skeleton } from '../components/Loading';
@@ -29,12 +31,14 @@ export default function ViewDetails({
   loadingItems,
   columnNames,
   columnItems,
+  columnCategories,
   loadingBalance,
   balance,
   onPostSubmit,
   savings,
 }) {
   const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -47,11 +51,22 @@ export default function ViewDetails({
             </ButtonUnderlined>
           </ContainerDetailsTitle>
           <ContainerDetailsActions>
-            <ButtonUnderlined
-              onClick={() => setFinancialItemModalOpen(!financialItemModalOpen)}
-            >
-              Adicionar item
-            </ButtonUnderlined>
+            {columnItems && (
+              <ButtonUnderlined
+                onClick={() =>
+                  setFinancialItemModalOpen(!financialItemModalOpen)
+                }
+              >
+                Adicionar item
+              </ButtonUnderlined>
+            )}
+            {columnCategories && (
+              <ButtonUnderlined
+                onClick={() => setCategoryModalOpen(!categoryModalOpen)}
+              >
+                Adicionar categoria
+              </ButtonUnderlined>
+            )}
           </ContainerDetailsActions>
         </ContainerDetailsHeader>
         {!savings && (
@@ -88,46 +103,80 @@ export default function ViewDetails({
           </RowDetails>
         )}
         <RowDetails fullHeight>
-          {columnItems.map((column, key) => {
-            return (
-              <ColumnDetails overflow="auto" key={key}>
-                {loadingItems && <Skeleton height="44px" />}
-                {column.map((item) => {
-                  return (
-                    <FinancialItem
-                      key={item._id}
-                      id={item._id}
-                      title={item.title}
-                      value={item.value}
-                      category={item.category}
-                      item={item}
-                      onPostSubmit={onPostSubmit}
-                    />
-                  );
-                })}
-              </ColumnDetails>
-            );
-          })}
+          {columnItems &&
+            columnItems.map((column, key) => {
+              return (
+                <ColumnDetails overflow="auto" key={key}>
+                  {loadingItems && <Skeleton height="44px" />}
+                  {column.map((item) => {
+                    return (
+                      <FinancialItem
+                        key={item._id}
+                        id={item._id}
+                        title={item.title}
+                        value={item.value}
+                        category={item.category}
+                        item={item}
+                        onPostSubmit={onPostSubmit}
+                      />
+                    );
+                  })}
+                </ColumnDetails>
+              );
+            })}
+          {columnCategories &&
+            columnCategories.map((column, key) => {
+              return (
+                <ColumnDetails overflow="auto" key={key}>
+                  {loadingItems && <Skeleton height="44px" />}
+                  {column.map((category) => {
+                    return (
+                      <CategoryItem
+                        key={category._id}
+                        id={category._id}
+                        title={category.title}
+                        color={category.color}
+                        onPostSubmit={onPostSubmit}
+                        category={category}
+                      />
+                    );
+                  })}
+                </ColumnDetails>
+              );
+            })}
         </RowDetails>
-        <ContainerDetailsFooter>
-          {loadingBalance ? (
-            <Skeleton width="244px" height="28px" />
-          ) : (
-            <ContainerDetailsFooterSummary>
-              <ReceiptIcon />
-              <Strong>{`${month ? 'Balanço mensal' : 'Balanço'}`}</Strong>
-              <Value negative={balance < 0}>{formatCurrency(balance)}</Value>
-            </ContainerDetailsFooterSummary>
-          )}
-        </ContainerDetailsFooter>
+        {!columnCategories && (
+          <ContainerDetailsFooter>
+            {loadingBalance ? (
+              <Skeleton width="244px" height="28px" />
+            ) : (
+              <ContainerDetailsFooterSummary>
+                <ReceiptIcon />
+                <Strong>{`${month ? 'Balanço mensal' : 'Balanço'}`}</Strong>
+                <Value negative={balance < 0}>{formatCurrency(balance)}</Value>
+              </ContainerDetailsFooterSummary>
+            )}
+          </ContainerDetailsFooter>
+        )}
       </ContainerDetails>
-      <Modal
-        open={financialItemModalOpen}
-        setOpen={setFinancialItemModalOpen}
-        title="Adicionar item"
-      >
-        <FinancialItemForm onPostSubmit={onPostSubmit} savings />
-      </Modal>
+      {columnItems && (
+        <Modal
+          open={financialItemModalOpen}
+          setOpen={setFinancialItemModalOpen}
+          title="Adicionar item"
+        >
+          <FinancialItemForm onPostSubmit={onPostSubmit} savings={savings} />
+        </Modal>
+      )}
+      {columnCategories && (
+        <Modal
+          open={categoryModalOpen}
+          setOpen={setCategoryModalOpen}
+          title="Adicionar categoria"
+        >
+          <CategoryForm onPostSubmit={onPostSubmit} />
+        </Modal>
+      )}
     </>
   );
 }

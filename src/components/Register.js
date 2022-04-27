@@ -21,7 +21,8 @@ const validationSchema = yup.object({
   username: yup
     .string()
     .label('Nome de usuário')
-    .min(8)
+    .min(6)
+    .max(12)
     .required()
     .matches(
       /^[a-z0-9_-]{3,15}$/,
