@@ -1,5 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { RecurringIcon } from '../images/Icons';
 import { ContainerBadge, TypeBadge } from '../styles/Details.styles';
 
 export default function RecurringBadge() {
@@ -29,16 +30,9 @@ export default function RecurringBadge() {
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
-        {showTooltip && (
-          <TypeBadge key="full" {...animationVariants}>
-            Recorrente
-          </TypeBadge>
-        )}
-        {!showTooltip && (
-          <TypeBadge key="simple" {...animationVariants}>
-            R
-          </TypeBadge>
-        )}
+        <TypeBadge key="full">
+          <RecurringIcon />
+        </TypeBadge>
       </ContainerBadge>
     </AnimatePresence>
   );

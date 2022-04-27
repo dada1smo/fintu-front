@@ -13,8 +13,34 @@ export const CategoriesProvider = ({ children }) => {
     }
   };
 
+  const createCategory = async (data) => {
+    try {
+      await api.post('/categories', data);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const updateCategory = async (id, data) => {
+    try {
+      await api.put(`/categories/${id}`, data);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const deleteCategory = async (id) => {
+    try {
+      await api.delete(`/categories/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
-    <CategoriesContext.Provider value={{ getCategories }}>
+    <CategoriesContext.Provider
+      value={{ getCategories, createCategory, updateCategory, deleteCategory }}
+    >
       {children}
     </CategoriesContext.Provider>
   );

@@ -56,7 +56,7 @@ export default function Sidebar() {
   return (
     <SidebarDashboard>
       <SidebarContainer>
-        <Logo src={logo} alt="Fintu" />
+        <Logo src={logo} alt="Fintu" onClick={() => navigate('/dashboard')} />
         <SidebarUserMenu>
           <ButtonPill onClick={() => setUserMenuOpen(!userMenuOpen)}>
             {username} <MenuHorizontalIcon />
@@ -82,7 +82,9 @@ export default function Sidebar() {
           <ButtonUnderlined onClick={() => navigate('/dashboard/savings')}>
             Economias
           </ButtonUnderlined>
-          <ButtonUnderlined>Categorias</ButtonUnderlined>
+          <ButtonUnderlined onClick={() => navigate('/dashboard/categories')}>
+            Categorias
+          </ButtonUnderlined>
         </SidebarContent>
       </SidebarContainer>
     </SidebarDashboard>
