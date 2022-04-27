@@ -18,7 +18,15 @@ import * as yup from '../yup';
 import { FormFieldText } from './FormField';
 
 const validationSchema = yup.object({
-  username: yup.string().label('Usuário').email().required(),
+  username: yup
+    .string()
+    .label('Nome de usuário')
+    .min(8)
+    .required()
+    .matches(
+      /^[a-z0-9_-]{3,15}$/,
+      'Nome de usuário deve ser composto de letras e números'
+    ),
   email: yup.string().label('E-mail').email().required(),
   password: yup.string().label('Senha').required(),
   passwordConfirm: yup.string().label('Senha'),
@@ -70,8 +78,8 @@ export default function Register() {
             <FormFlex>
               <FormFieldText
                 type="text"
-                label="Usuário"
-                placeholder="Usuário"
+                label="Nome de usuário"
+                placeholder="Nome de usuário"
                 name="username"
                 register={register}
                 errors={errors}
