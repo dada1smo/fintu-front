@@ -6,7 +6,7 @@ export const ContainerMonths = styled.div`
   grid-column: 4 / span 9;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  column-gap: 32px;
+  column-gap: 24px;
   overflow-y: auto;
   position: relative;
   padding-right: 32px;
@@ -20,12 +20,18 @@ export const ContainerMonths = styled.div`
     background: ${Theme.neutral[200]};
     border-radius: 0;
   }
+
+  @media ${Device.tablet} {
+    grid-column: 1 / span 4;
+    grid-template-columns: repeat(4, 1fr);
+    padding-right: 12px;
+  }
 `;
 
 export const ContainerSelect = styled.div`
   grid-column: auto / span 9;
   align-self: start;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   position: sticky;
   top: 0;
   background: ${Theme.neutral[50]};
@@ -34,13 +40,20 @@ export const ContainerSelect = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 0 12px;
-  z-index: 100;
+  z-index: 80;
+
+  @media ${Device.tablet} {
+    grid-column: 1 / span 4;
+    top: -4px;
+    padding: 4px 0 8px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const CardMonth = styled.div`
   grid-column: auto / span 3;
   width: 100%;
-  height: 232px;
+  height: 212px;
   justify-self: flex-start;
   margin-bottom: 28px;
   align-self: start;
@@ -48,9 +61,12 @@ export const CardMonth = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 28px;
   background: ${(props) =>
     props.current ? Theme.neutral['000'] : Theme.neutral[100]};
+
+  @media ${Device.tablet} {
+    grid-column: 1 / span 4;
+  }
 `;
 
 export const CardMonthHeader = styled.div`
@@ -61,4 +77,9 @@ export const CardMonthFooter = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+`;
+
+export const ResponsiveActions = styled.div`
+  display: flex;
+  gap: 16px;
 `;

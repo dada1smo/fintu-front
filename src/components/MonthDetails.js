@@ -18,7 +18,10 @@ export default function MonthDetails() {
       const { data } = await getMonthItems(month);
       const income = data.filter((item) => item.type === 'I');
       const expenses = data.filter((item) => item.type === 'E');
-      setMonthItems([income, expenses]);
+      setMonthItems([
+        { header: 'Entradas', items: income },
+        { header: 'Saídas', items: expenses },
+      ]);
       setLoadingItems(false);
     } catch (error) {
       console.log(error);

@@ -11,6 +11,7 @@ export const OverlayModal = styled(motion.div)`
   z-index: 100;
   top: 0;
   left: 0;
+  background: ${rgba(`${Theme.neutral[900]}`, 0.4)};
 `;
 
 export const WrapperModal = styled(motion.div)`
@@ -23,7 +24,6 @@ export const WrapperModal = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${rgba(`${Theme.neutral[900]}`, 0.4)};
   transition: 0;
 `;
 

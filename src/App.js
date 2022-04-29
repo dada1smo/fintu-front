@@ -6,14 +6,17 @@ import { UserProvider } from './providers/user.provider';
 import AppRouter from './components/AppRouter';
 import { FinancesProvider } from './providers/finances.provider';
 import { CategoriesProvider } from './providers/categories.provider';
+import { SidebarProvider } from './providers/sidebar.provider';
 
 function App() {
   return (
     <UserProvider>
       <FinancesProvider>
         <CategoriesProvider>
-          <GlobalStyles />
-          <AppRouter />
+          <SidebarProvider>
+            <GlobalStyles />
+            <AppRouter />
+          </SidebarProvider>
         </CategoriesProvider>
       </FinancesProvider>
     </UserProvider>

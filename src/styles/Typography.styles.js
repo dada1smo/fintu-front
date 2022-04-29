@@ -18,9 +18,9 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   font-family: ${Theme.inter};
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 24px;
   color: ${Theme.neutral[600]};
 `;
 
@@ -28,7 +28,7 @@ export const H3 = styled.h3`
   font-family: ${Theme.inter};
   font-size: 20px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 24px;
   color: ${Theme.neutral[600]};
 `;
 
@@ -51,7 +51,7 @@ export const Value = styled.div`
 
 export const Label = styled.span`
   font-family: ${Theme.inter};
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 1px;

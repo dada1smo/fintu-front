@@ -15,7 +15,7 @@ export default function SavingsDetails() {
       setLoadingItems(true);
       setSavingsItems([]);
       const { data } = await getSavingsItems();
-      setSavingsItems([data]);
+      setSavingsItems([{ items: data }]);
       setLoadingItems(false);
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ export default function SavingsDetails() {
   return (
     <ViewDetails
       loadingItems={loadingItems}
-      columnNames={['Economias']}
+      title="Economias"
       columnItems={savingsItems}
       loadingBalance={loadingBalance}
       balance={savingsBalance}

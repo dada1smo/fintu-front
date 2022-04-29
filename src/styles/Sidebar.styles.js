@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { Device } from './Breakpoints.styles';
 import { Theme } from './Theme.styles';
 import dashboardIllustration from '../images/DashboardIllustration.svg';
+import { motion } from 'framer-motion';
 
-export const SidebarDashboard = styled.div`
+export const SidebarDashboard = styled(motion.div)`
   grid-column: 1 / span 3;
   background: ${Theme.neutral['000']};
   position: relative;
@@ -19,6 +20,23 @@ export const SidebarDashboard = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
+  }
+
+  @media ${Device.tablet} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60vw;
+    z-index: 4000;
+    transform: 'translateX(-80vw)';
+    transition: 0;
+  }
+
+  @media ${Device.laptopL} {
+    &::after {
+      height: 120px;
+    }
   }
 `;
 
