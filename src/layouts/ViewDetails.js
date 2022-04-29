@@ -6,10 +6,20 @@ import FinancialItem from '../components/FinancialItem';
 import FinancialItemForm from '../components/FinancialItemForm';
 import { Skeleton } from '../components/Loading';
 import Modal from '../components/Modal';
-import { ReceiptIcon } from '../images/Icons';
-import { ButtonUnderlined } from '../styles/Button.styles';
+import useWindowSize from '../hooks/use-window-size';
+import {
+  AddCategoryIcon,
+  AddItemIcon,
+  NavigationIcon,
+  ReceiptIcon,
+  ReturnIcon,
+} from '../images/Icons';
+import useSidebar from '../providers/sidebar.provider';
+import { ScreenSize } from '../styles/Breakpoints.styles';
+import { ButtonIcon, ButtonUnderlined } from '../styles/Button.styles';
 import {
   ColumnDetails,
+  ColumnDetailsHeader,
   ContainerDetails,
   ContainerDetailsActions,
   ContainerDetailsFooter,
@@ -40,58 +50,84 @@ export default function ViewDetails({
   const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const navigate = useNavigate();
+  const screenSize = useWindowSize();
+  const { responsiveSidebar, setResponsiveSidebar } = useSidebar();
 
   return (
     <>
       <ContainerDetails>
         <ContainerDetailsHeader>
-          <ContainerDetailsTitle>
-            <ButtonUnderlined onClick={() => navigate('/dashboard/')}>
-              Voltar
-            </ButtonUnderlined>
-          </ContainerDetailsTitle>
-          <ContainerDetailsActions>
-            {columnItems && (
-              <ButtonUnderlined
-                onClick={() =>
-                  setFinancialItemModalOpen(!financialItemModalOpen)
-                }
-              >
-                Adicionar item
-              </ButtonUnderlined>
-            )}
-            {columnCategories && (
-              <ButtonUnderlined
-                onClick={() => setCategoryModalOpen(!categoryModalOpen)}
-              >
-                Adicionar categoria
-              </ButtonUnderlined>
-            )}
-          </ContainerDetailsActions>
+          {screenSize.width > ScreenSize.tablet ? (
+            <>
+              <ContainerDetailsTitle>
+                <ButtonUnderlined onClick={() => navigate('/dashboard/')}>
+                  Voltar
+                </ButtonUnderlined>
+              </ContainerDetailsTitle>
+              <ContainerDetailsActions>
+                {columnItems && (
+                  <ButtonUnderlined
+                    onClick={() =>
+                      setFinancialItemModalOpen(!financialItemModalOpen)
+                    }
+                  >
+                    Adicionar item
+                  </ButtonUnderlined>
+                )}
+                {columnCategories && (
+                  <ButtonUnderlined
+                    onClick={() => setCategoryModalOpen(!categoryModalOpen)}
+                  >
+                    Adicionar categoria
+                  </ButtonUnderlined>
+                )}
+              </ContainerDetailsActions>
+            </>
+          ) : (
+            <>
+              <ContainerDetailsTitle>
+                <ButtonIcon onClick={() => navigate('/dashboard/')}>
+                  <ReturnIcon />
+                </ButtonIcon>
+              </ContainerDetailsTitle>
+              <ContainerDetailsActions>
+                {columnItems && (
+                  <ButtonIcon
+                    onClick={() =>
+                      setFinancialItemModalOpen(!financialItemModalOpen)
+                    }
+                  >
+                    <AddItemIcon />
+                  </ButtonIcon>
+                )}
+                {columnCategories && (
+                  <ButtonIcon
+                    onClick={() => setCategoryModalOpen(!categoryModalOpen)}
+                  >
+                    <AddCategoryIcon />
+                  </ButtonIcon>
+                )}
+                <ButtonIcon
+                  onClick={() => setResponsiveSidebar(!responsiveSidebar)}
+                >
+                  <NavigationIcon />
+                </ButtonIcon>
+              </ContainerDetailsActions>
+            </>
+          )}
         </ContainerDetailsHeader>
-        {!savings && (
-          <ContainerDetailsHeader>
-            <ContainerDetailsTitle>
-              {month ? (
-                <>
-                  <Label>{formatMonth(month)}</Label>
-                  <H2>{getMonthName(month)}</H2>
-                </>
-              ) : (
-                <H2>{title}</H2>
-              )}
-            </ContainerDetailsTitle>
-          </ContainerDetailsHeader>
-        )}
-        <RowDetails>
-          {columnNames.map((column, key) => {
-            return (
-              <ColumnDetails key={key}>
-                <Label negative={column === 'Saídas'}>{column}</Label>
-              </ColumnDetails>
-            );
-          })}
-        </RowDetails>
+        <ContainerDetailsHeader>
+          <ContainerDetailsTitle>
+            {month ? (
+              <>
+                <Label>{formatMonth(month)}</Label>
+                <H2>{getMonthName(month)}</H2>
+              </>
+            ) : (
+              <H2>{title}</H2>
+            )}
+          </ContainerDetailsTitle>
+        </ContainerDetailsHeader>
         {loadingItems && (
           <RowDetails>
             <ColumnDetails>
@@ -108,7 +144,14 @@ export default function ViewDetails({
               return (
                 <ColumnDetails overflow="auto" key={key}>
                   {loadingItems && <Skeleton height="44px" />}
-                  {column.map((item) => {
+                  {column.header && (
+                    <ColumnDetailsHeader>
+                      <Label negative={column.header === 'Saídas'}>
+                        {column.header}
+                      </Label>
+                    </ColumnDetailsHeader>
+                  )}
+                  {column.items.map((item) => {
                     return (
                       <FinancialItem
                         key={item._id}

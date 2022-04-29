@@ -14,7 +14,6 @@ export default function CategoriesDetails() {
       setLoadingCategories(true);
       setCategories([]);
       const { data } = await getCategories();
-      console.log(data);
       setCategories([data]);
       setLoadingCategories(false);
     } catch (error) {
@@ -26,12 +25,10 @@ export default function CategoriesDetails() {
     getUserCategories();
   }, []);
 
-  console.log(categories);
-
   return (
     <ViewDetails
       loadingItems={loadingCategories}
-      columnNames={['Categorias']}
+      title="Categorias"
       columnCategories={categories}
       onPostSubmit={getUserCategories}
       savings

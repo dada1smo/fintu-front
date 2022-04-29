@@ -7,6 +7,10 @@ import errorIcon from './ErrorIcon.svg';
 import receiptIcon from './ReceiptIcon.svg';
 import dismissIcon from './DismissIcon.svg';
 import recurringIcon from './RecurringIcon.svg';
+import navigationIcon from './NavigationIcon.svg';
+import addItemIcon from './AddItemIcon.svg';
+import returnIcon from './ReturnIcon.svg';
+import addCategoryIcon from './AddCategoryIcon.svg';
 
 export const CheckIcon = () => <img src={checkIcon} alt="" />;
 export const MenuHorizontalIcon = () => <img src={menuHorizontalIcon} alt="" />;
@@ -17,3 +21,7 @@ export const ErrorIcon = () => <img src={errorIcon} alt="" />;
 export const ReceiptIcon = () => <img src={receiptIcon} alt="" />;
 export const DismissIcon = () => <img src={dismissIcon} alt="" />;
 export const RecurringIcon = () => <img src={recurringIcon} alt="" />;
+export const NavigationIcon = () => <img src={navigationIcon} alt="" />;
+export const AddItemIcon = () => <img src={addItemIcon} alt="" />;
+export const ReturnIcon = () => <img src={returnIcon} alt="" />;
+export const AddCategoryIcon = () => <img src={addCategoryIcon} alt="" />;

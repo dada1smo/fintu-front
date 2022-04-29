@@ -29,7 +29,7 @@ export default function Modal({ open, setOpen, title, children }) {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       {open && (
         <WrapperModal key="modal" {...animationVariants}>
           <ContainerModal>

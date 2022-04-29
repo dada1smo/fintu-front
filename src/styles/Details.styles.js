@@ -14,6 +14,13 @@ export const ContainerDetails = styled.div`
   flex-direction: column;
   gap: 28px;
   position: relative;
+
+  @media ${Device.tablet} {
+    grid-column: 1 / span 4;
+    top: -4px;
+    padding: 20px 16px 4px;
+    margin-right: 12px;
+  }
 `;
 
 export const ContainerDetailsHeader = styled.div`
@@ -37,6 +44,24 @@ export const RowDetails = styled.div`
   gap: 32px;
   overflow: hidden;
   flex: ${(props) => (props.fullHeight ? '1 1 auto' : '0 0 auto')};
+
+  @media ${Device.tablet} {
+    display: block;
+    overflow: auto;
+    height: auto;
+    flex: 1 1 100%;
+    padding-bottom: 60px;
+
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 100%;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${Theme.neutral[200]};
+      border-radius: 0;
+    }
+  }
 `;
 
 export const ColumnDetails = styled.div`
@@ -46,6 +71,7 @@ export const ColumnDetails = styled.div`
   gap: 4px;
   padding-bottom: ${(props) => (props.overflow ? '20px' : '0')};
   overflow-y: ${(props) => (props.overflow ? 'auto' : 'hidden')};
+  position: relative;
 
   &::-webkit-scrollbar {
     width: 12px;
@@ -56,6 +82,20 @@ export const ColumnDetails = styled.div`
     background: ${Theme.neutral[200]};
     border-radius: 0;
   }
+
+  @media ${Device.tablet} {
+    overflow-y: hidden;
+    height: auto;
+  }
+`;
+
+export const ColumnDetailsHeader = styled.div`
+  width: 100%;
+  position: sticky;
+  top: 0;
+  padding: 12px 0;
+  background: ${Theme.neutral['000']};
+  z-index: 40;
 `;
 
 export const ItemDetails = styled.div`
@@ -95,6 +135,7 @@ export const ContainerDetailsFooter = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 0 28px;
+  background: ${Theme.neutral['000']};
   border-top: 1px solid ${Theme.neutral[50]};
   box-shadow: 0px 0px 12px 0px ${Theme.neutral[200]};
 `;

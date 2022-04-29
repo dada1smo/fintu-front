@@ -1,5 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ContainerMonths, ContainerSelect } from '../styles/Dashboard.styles';
+import {
+  ContainerMonths,
+  ContainerSelect,
+  ResponsiveActions,
+} from '../styles/Dashboard.styles';
 import { monthsMock } from '../mocks/months.mock.js';
 import { useEffect, useState } from 'react';
 import Select from './Select';
@@ -7,7 +11,11 @@ import useFinances from '../providers/finances.provider';
 import Month from './Month';
 import Modal from './Modal';
 import FinancialItemForm from './FinancialItemForm';
-import { ButtonUnderlined } from '../styles/Button.styles';
+import { ButtonIcon, ButtonUnderlined } from '../styles/Button.styles';
+import useSidebar from '../providers/sidebar.provider';
+import { AddItemIcon, NavigationIcon } from '../images/Icons';
+import useWindowSize from '../hooks/use-window-size';
+import { ScreenSize } from '../styles/Breakpoints.styles';
 
 export default function Months() {
   const currentYear = new Date().getFullYear();
@@ -18,6 +26,9 @@ export default function Months() {
   const [loadingBalance, setLoadingBalance] = useState(false);
   const [financialItemModalOpen, setFinancialItemModalOpen] = useState(false);
   const { getYears, getYearBalance } = useFinances();
+
+  const { responsiveSidebar, setResponsiveSidebar } = useSidebar();
+  const screenSize = useWindowSize();
 
   const getUserYears = async () => {
     try {
@@ -70,11 +81,28 @@ export default function Months() {
             setOpen={setYearSelectMenuOpen}
             items={userYearOptions}
           />
-          <ButtonUnderlined
-            onClick={() => setFinancialItemModalOpen(!financialItemModalOpen)}
-          >
-            Adicionar item
-          </ButtonUnderlined>
+          {screenSize.width > ScreenSize.tablet ? (
+            <ButtonUnderlined
+              onClick={() => setFinancialItemModalOpen(!financialItemModalOpen)}
+            >
+              Adicionar item
+            </ButtonUnderlined>
+          ) : (
+            <ResponsiveActions>
+              <ButtonIcon
+                onClick={() =>
+                  setFinancialItemModalOpen(!financialItemModalOpen)
+                }
+              >
+                <AddItemIcon />
+              </ButtonIcon>
+              <ButtonIcon
+                onClick={() => setResponsiveSidebar(!responsiveSidebar)}
+              >
+                <NavigationIcon />
+              </ButtonIcon>
+            </ResponsiveActions>
+          )}
         </ContainerSelect>
         {yearBalance.map(({ month, balance }) => {
           return (
