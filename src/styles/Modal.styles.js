@@ -8,6 +8,7 @@ export const OverlayModal = styled(motion.div)`
   position: absolute;
   width: 100vw;
   height: 100vh;
+  height: fill-available;
   z-index: 100;
   top: 0;
   left: 0;
@@ -18,6 +19,7 @@ export const WrapperModal = styled(motion.div)`
   position: fixed;
   width: 100vw;
   height: 100vh;
+  height: fill-available;
   z-index: 100;
   top: 0;
   left: 0;
