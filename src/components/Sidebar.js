@@ -1,6 +1,7 @@
 import { ButtonPill, ButtonUnderlined } from '../styles/Button.styles';
 import { Logo } from '../styles/Logo.styles';
 import {
+  OverlaySidebar,
   SidebarContainer,
   SidebarContent,
   SidebarDashboard,
@@ -8,7 +9,7 @@ import {
   SidebarWallet,
 } from '../styles/Sidebar.styles';
 import logo from '../images/Logo.svg';
-import { MenuHorizontalIcon, SavingsIcon, WalletIcon } from '../images/Icons';
+import { MenuHorizontalIcon, SavingsIcon } from '../images/Icons';
 import { Label, Value } from '../styles/Typography.styles';
 import { Summary } from '../styles/Summary.styles';
 import Menu from './Menu';
@@ -21,7 +22,6 @@ import { useNavigate } from 'react-router';
 import useWindowSize from '../hooks/use-window-size';
 import { ScreenSize } from '../styles/Breakpoints.styles';
 import useSidebar from '../providers/sidebar.provider';
-import { OverlayModal } from '../styles/Modal.styles';
 import { AnimatePresence } from 'framer-motion';
 
 export default function Sidebar() {
@@ -145,7 +145,7 @@ export default function Sidebar() {
         </SidebarDashboard>
       )}
       {responsiveSidebar && screenSize.width < ScreenSize.tablet && (
-        <OverlayModal
+        <OverlaySidebar
           key="overlay"
           {...animationVariants}
           onClick={() => setResponsiveSidebar(!responsiveSidebar)}

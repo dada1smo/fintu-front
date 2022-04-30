@@ -66,7 +66,7 @@ export const ContainerModalHeader = styled.div`
 export const ContainerModalContent = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 72vh;
+  max-height: 64vh;
   display: flex;
   flex-direction: column;
   gap: 16px;

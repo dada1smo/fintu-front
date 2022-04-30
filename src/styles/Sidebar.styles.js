@@ -3,6 +3,18 @@ import { Device } from './Breakpoints.styles';
 import { Theme } from './Theme.styles';
 import dashboardIllustration from '../images/DashboardIllustration.svg';
 import { motion } from 'framer-motion';
+import { rgba } from 'polished';
+
+export const OverlaySidebar = styled(motion.div)`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  height: fill-available;
+  z-index: 84;
+  top: 0;
+  left: 0;
+  background: ${rgba(`${Theme.neutral[900]}`, 0.4)};
+`;
 
 export const SidebarDashboard = styled(motion.div)`
   grid-column: 1 / span 3;
@@ -28,7 +40,7 @@ export const SidebarDashboard = styled(motion.div)`
     left: 0;
     height: 100%;
     width: 60vw;
-    z-index: 4000;
+    z-index: 88;
     transform: 'translateX(-80vw)';
     transition: 0;
   }
