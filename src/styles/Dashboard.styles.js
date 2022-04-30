@@ -24,7 +24,7 @@ export const ContainerMonths = styled.div`
   @media ${Device.tablet} {
     grid-column: 1 / span 4;
     grid-template-columns: repeat(4, 1fr);
-    padding-right: 12px;
+    padding: 0 12px 20px 12px;
   }
 `;
 
@@ -44,8 +44,8 @@ export const ContainerSelect = styled.div`
 
   @media ${Device.tablet} {
     grid-column: 1 / span 4;
-    top: -4px;
-    padding: 4px 0 8px;
+    top: 0;
+    padding: 20px 0 8px;
     margin-bottom: 12px;
   }
 `;

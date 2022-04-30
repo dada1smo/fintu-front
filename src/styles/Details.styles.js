@@ -17,9 +17,8 @@ export const ContainerDetails = styled.div`
 
   @media ${Device.tablet} {
     grid-column: 1 / span 4;
-    top: -4px;
-    padding: 20px 16px 4px;
-    margin-right: 12px;
+    padding: 24px 0 4px 16px;
+    margin-right: 0;
   }
 `;
 
@@ -27,6 +26,10 @@ export const ContainerDetailsHeader = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media ${Device.tablet} {
+    padding-right: 16px;
+  }
 `;
 
 export const ContainerDetailsTitle = styled.div`
@@ -51,6 +54,7 @@ export const RowDetails = styled.div`
     height: auto;
     flex: 1 1 100%;
     padding-bottom: 60px;
+    padding-right: 16px;
 
     &::-webkit-scrollbar {
       width: 12px;
@@ -138,6 +142,7 @@ export const ContainerDetailsFooter = styled.div`
   background: ${Theme.neutral['000']};
   border-top: 1px solid ${Theme.neutral[50]};
   box-shadow: 0px 0px 12px 0px ${Theme.neutral[200]};
+  z-index: 44;
 `;
 
 export const ContainerDetailsFooterSummary = styled.div`

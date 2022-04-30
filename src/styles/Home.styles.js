@@ -73,8 +73,12 @@ export const CardHome = styled.div`
     grid-column: 1 / span 4;
   }
 
+  @media ${Device.laptopL} {
+    padding: 20px 32px 28px;
+  }
+
   @media ${Device.mobileL} {
-    padding: 16px 20px 28px;
+    padding: 20px 16px 28px;
   }
 `;
 
