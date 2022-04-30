@@ -42,6 +42,7 @@ export default function CategoryItem({
       action: () => {
         setCategoryMenuOpen(!categoryMenuOpen);
         setCategoryModalOpen(!categoryModalOpen);
+        setMobileCategoryMenuOpen(false);
       },
     },
     {
@@ -49,6 +50,7 @@ export default function CategoryItem({
       action: () => {
         setCategoryMenuOpen(!categoryMenuOpen);
         setDeleteCategoryModalOpen(!deleteCategoryModalOpen);
+        setMobileCategoryMenuOpen(false);
       },
     },
   ];

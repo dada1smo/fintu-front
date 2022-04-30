@@ -51,6 +51,7 @@ export default function FinancialItem({
       action: () => {
         setItemModalOpen(!itemModalOpen);
         setItemMenuOpen(!itemMenuOpen);
+        setMobileItemMenuOpen(false);
       },
     },
     {
@@ -58,6 +59,7 @@ export default function FinancialItem({
       action: () => {
         setDeleteItemModalOpen(!itemModalOpen);
         setItemMenuOpen(!itemMenuOpen);
+        setMobileItemMenuOpen(false);
       },
     },
   ];
@@ -70,6 +72,7 @@ export default function FinancialItem({
         action: () => {
           setEndRecurrenceItemModalOpen(!endRecurrenceItemModalOpen);
           setItemMenuOpen(!itemMenuOpen);
+          setMobileItemMenuOpen(false);
         },
       });
     }
