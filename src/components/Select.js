@@ -32,7 +32,7 @@ export default function Select({
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 0.05 }}
-            bottom={bottom ? true : false}
+            bottom={bottom ? bottom : false}
           >
             <ListSelect>
               {items.map(({ label, action, component }) => {

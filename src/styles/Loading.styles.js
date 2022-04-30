@@ -17,10 +17,18 @@ export const LoadingPageOverlay = styled(motion.div)`
   justify-content: center;
 `;
 
+export const LoadingContentContainer = styled(motion.div)`
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const LoaderPage = styled(motion.div)`
   background: ${Theme.green[200]};
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 `;
 
 export const SkeletonBase = styled(motion.div)`
