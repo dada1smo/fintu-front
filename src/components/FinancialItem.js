@@ -1,14 +1,23 @@
 import { useState } from 'react';
+import useWindowSize from '../hooks/use-window-size';
 import { MenuHorizontalIcon } from '../images/Icons';
 import useFinances from '../providers/finances.provider';
-import { ButtonIcon, ButtonPillCaution } from '../styles/Button.styles';
+import { ScreenSize } from '../styles/Breakpoints.styles';
+import {
+  ButtonIcon,
+  ButtonPillCaution,
+  ButtonUnderlined,
+} from '../styles/Button.styles';
 import {
   ItemDetails,
   ItemDetailsFooter,
   ItemDetailsStart,
   ItemDetailsSummary,
 } from '../styles/Details.styles';
-import { ContainerModalFooter } from '../styles/Modal.styles';
+import {
+  ContainerModalFooter,
+  ContainerModalMobile,
+} from '../styles/Modal.styles';
 import { Strong, Value } from '../styles/Typography.styles';
 import { formatCurrency } from '../utils/format.utils';
 import Category from './Category';
@@ -28,11 +37,13 @@ export default function FinancialItem({
   onPostSubmit,
 }) {
   const [itemMenuOpen, setItemMenuOpen] = useState(false);
+  const [mobileItemMenuOpen, setMobileItemMenuOpen] = useState(false);
   const [itemModalOpen, setItemModalOpen] = useState(false);
   const [deleteItemModalOpen, setDeleteItemModalOpen] = useState(false);
   const [endRecurrenceItemModalOpen, setEndRecurrenceItemModalOpen] =
     useState(false);
   const { deleteFinancialItem } = useFinances();
+  const screenSize = useWindowSize();
 
   const defaultActions = [
     {
@@ -87,14 +98,24 @@ export default function FinancialItem({
     <>
       <ItemDetails>
         <ItemDetailsStart>
-          <ButtonIcon onClick={() => setItemMenuOpen(!itemMenuOpen)}>
-            <MenuHorizontalIcon />
-          </ButtonIcon>
-          <Menu
-            open={itemMenuOpen}
-            setOpen={setItemMenuOpen}
-            items={itemActions(defaultActions)}
-          />
+          {screenSize.width > ScreenSize.tablet ? (
+            <>
+              <ButtonIcon onClick={() => setItemMenuOpen(!itemMenuOpen)}>
+                <MenuHorizontalIcon />
+              </ButtonIcon>
+              <Menu
+                open={itemMenuOpen}
+                setOpen={setItemMenuOpen}
+                items={itemActions(defaultActions)}
+              />
+            </>
+          ) : (
+            <ButtonIcon
+              onClick={() => setMobileItemMenuOpen(!mobileItemMenuOpen)}
+            >
+              <MenuHorizontalIcon />
+            </ButtonIcon>
+          )}
           <ItemDetailsSummary>
             <Strong>{title}</Strong>
             <ItemDetailsFooter>
@@ -109,6 +130,21 @@ export default function FinancialItem({
           {formatCurrency(checkNegative(value, type))}
         </Value>
       </ItemDetails>
+      <Modal
+        open={mobileItemMenuOpen}
+        setOpen={setMobileItemMenuOpen}
+        title="Opções"
+      >
+        <ContainerModalMobile>
+          {itemActions(defaultActions).map(({ label, action }) => {
+            return (
+              <ButtonUnderlined key={label} onClick={action}>
+                {label}
+              </ButtonUnderlined>
+            );
+          })}
+        </ContainerModalMobile>
+      </Modal>
       <Modal
         open={itemModalOpen}
         setOpen={setItemModalOpen}

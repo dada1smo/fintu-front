@@ -68,3 +68,11 @@ export const ContainerModalFooter = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const ContainerModalMobile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 12px;
+`;
