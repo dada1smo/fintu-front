@@ -15,6 +15,8 @@ export const Wrapper = styled.div`
 
   @media ${Device.tablet} {
     grid-template-columns: repeat(4, 1fr);
-    padding: 20px 0 20px 12px;
+    padding: 0;
+    background: ${(props) =>
+      props.dashboard ? Theme.neutral[50] : Theme.neutral['000']};
   }
 `;

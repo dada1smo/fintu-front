@@ -11,17 +11,22 @@ export const H1 = styled.h1`
   color: ${Theme.green[700]};
 
   @media ${Device.laptopL} {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 28px;
   }
 `;
 
 export const H2 = styled.h2`
   font-family: ${Theme.inter};
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 28px;
   color: ${Theme.neutral[600]};
+
+  @media ${Device.laptopL} {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 
 export const H3 = styled.h3`
@@ -51,12 +56,16 @@ export const Value = styled.div`
 
 export const Label = styled.span`
   font-family: ${Theme.inter};
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: ${(props) => (props.negative ? Theme.red[900] : Theme.green[700])};
+
+  @media ${Device.laptopL} {
+    font-size: 14px;
+  }
 `;
 
 export const Parapraph = styled.p`
@@ -73,4 +82,9 @@ export const Subtitle = styled.p`
   font-weight: 400;
   line-height: 28px;
   color: ${Theme.neutral[600]};
+
+  @media ${Device.laptopL} {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;

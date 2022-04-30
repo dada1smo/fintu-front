@@ -8,15 +8,20 @@ import {
 import logo from '../images/Logo.svg';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Logo } from '../styles/Logo.styles';
+import useWindowSize from '../hooks/use-window-size';
+import { ScreenSize } from '../styles/Breakpoints.styles';
 
 export default function Home() {
   const { pathname } = useLocation();
+  const screenSize = useWindowSize();
 
   return (
     <Wrapper>
-      <BackgroundHome>
-        <IllustrationHome />
-      </BackgroundHome>
+      {screenSize.width > ScreenSize.tablet && (
+        <BackgroundHome>
+          <IllustrationHome />
+        </BackgroundHome>
+      )}
 
       <CardHome login={pathname === '/'}>
         <Logo src={logo} alt="Fintu" />
