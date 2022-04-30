@@ -267,12 +267,12 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
               open={categoriesMenuOpen}
               setOpen={setCategoriesMenuOpen}
               items={categoryOptions}
-              bottom
+              position="bottom"
             />
           )}
         </FormFieldHalf>
       </FormFlex>
-      {!item && savings && (
+      {!item && !savings && (
         <FormFlex>
           {isRecurring === 'Recorrente' && (
             <FormFieldCheckbox

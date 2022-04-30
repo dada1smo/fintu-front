@@ -6,11 +6,20 @@ const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
+  const [showFirstSteps, setShowFirstSteps] = useState(false);
 
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
     setToken(localStorage.getItem('token'));
+    if (localStorage.getItem('firstSteps') === null) {
+      setShowFirstSteps(true);
+    } else {
+      setShowFirstSteps(false);
+    }
   }, []);
+
+  console.log(showFirstSteps);
+  console.log(localStorage.getItem('firstSteps'));
 
   const login = async (data) => {
     try {
@@ -41,8 +50,24 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const handleFirstSteps = () => {
+    localStorage.setItem('firstSteps', false);
+    setShowFirstSteps(false);
+  };
+
   return (
-    <UserContext.Provider value={{ login, logout, signup, username, token }}>
+    <UserContext.Provider
+      value={{
+        login,
+        logout,
+        signup,
+        username,
+        token,
+        handleFirstSteps,
+        showFirstSteps,
+        setShowFirstSteps,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

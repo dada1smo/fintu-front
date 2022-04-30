@@ -63,6 +63,26 @@ export const ContainerModalHeader = styled.div`
   justify-content: space-between;
 `;
 
+export const ContainerModalContent = styled.div`
+  width: 100%;
+  height: 100%;
+  max-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 100%;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.neutral[200]};
+    border-radius: 0;
+  }
+`;
+
 export const ContainerModalFooter = styled.div`
   display: flex;
   align-items: center;

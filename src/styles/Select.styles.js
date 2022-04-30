@@ -60,8 +60,8 @@ export const ContainerSelect = styled(motion.div)`
   box-shadow: 0px 0px 24px 0px ${Theme.neutral[300]};
 
   @media ${Device.tablet} {
-    bottom: ${(props) => (props.bottom ? '100%' : 'auto')};
-    top: ${(props) => (props.bottom ? 'auto' : '100%')};
+    bottom: ${(props) => (props.position === 'bottom' ? '100%' : 'auto')};
+    top: ${(props) => (props.position === 'bottom' ? 'auto' : '100%')};
   }
 `;
 
