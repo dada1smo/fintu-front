@@ -126,6 +126,7 @@ export default function CategoryForm({ onPostSubmit, category }) {
             open={colorsMenuOpen}
             setOpen={setColorsMenuOpen}
             items={colorOptions}
+            bottom
           />
         </FormFieldHalf>
       </FormFlex>

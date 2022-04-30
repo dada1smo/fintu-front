@@ -14,6 +14,7 @@ export default function Select({
   setOpen,
   items,
   selectedComponent,
+  bottom,
 }) {
   const selectedCategory = (
     <Category
@@ -31,6 +32,7 @@ export default function Select({
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 0.05 }}
+            bottom={bottom ? true : false}
           >
             <ListSelect>
               {items.map(({ label, action, component }) => {

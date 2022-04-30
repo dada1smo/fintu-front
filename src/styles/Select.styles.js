@@ -58,6 +58,11 @@ export const ContainerSelect = styled(motion.div)`
   margin-right: auto;
   border: 1px solid ${Theme.neutral['600']};
   box-shadow: 0px 0px 24px 0px ${Theme.neutral[300]};
+
+  @media ${Device.tablet} {
+    bottom: ${(props) => (props.bottom ? '100%' : 'auto')};
+    top: ${(props) => (props.bottom ? 'auto' : '100%')};
+  }
 `;
 
 export const ListSelect = styled.ul`
@@ -66,6 +71,18 @@ export const ListSelect = styled.ul`
   justify-content: stretch;
   margin: 0;
   list-style-type: none;
+  max-height: 20vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 100%;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.neutral[200]};
+    border-radius: 0;
+  }
 `;
 
 export const ItemSelect = styled.li`
