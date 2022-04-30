@@ -4,7 +4,7 @@ import CategoryForm from '../components/CategoryForm';
 import CategoryItem from '../components/CategoryItem';
 import FinancialItem from '../components/FinancialItem';
 import FinancialItemForm from '../components/FinancialItemForm';
-import { Skeleton } from '../components/Loading';
+import { LoadingContent, Skeleton } from '../components/Loading';
 import Modal from '../components/Modal';
 import useWindowSize from '../hooks/use-window-size';
 import {
@@ -28,7 +28,14 @@ import {
   ContainerDetailsTitle,
   RowDetails,
 } from '../styles/Details.styles';
-import { H2, Label, Strong, Value } from '../styles/Typography.styles';
+import { LoaderPage } from '../styles/Loading.styles';
+import {
+  H2,
+  Label,
+  Parapraph,
+  Strong,
+  Value,
+} from '../styles/Typography.styles';
 import {
   formatCurrency,
   formatMonth,
@@ -128,22 +135,12 @@ export default function ViewDetails({
             )}
           </ContainerDetailsTitle>
         </ContainerDetailsHeader>
-        {loadingItems && (
-          <RowDetails>
-            <ColumnDetails>
-              <Skeleton height="44px" />
-            </ColumnDetails>
-            <ColumnDetails>
-              <Skeleton height="44px" />
-            </ColumnDetails>
-          </RowDetails>
-        )}
+        {loadingItems && <LoadingContent />}
         <RowDetails fullHeight>
           {columnItems &&
             columnItems.map((column, key) => {
               return (
                 <ColumnDetails overflow="auto" key={key}>
-                  {loadingItems && <Skeleton height="44px" />}
                   {column.header && (
                     <ColumnDetailsHeader>
                       <Label negative={column.header === 'Saídas'}>
@@ -164,6 +161,11 @@ export default function ViewDetails({
                       />
                     );
                   })}
+                  {column.items.length === 0 && (
+                    <Parapraph>{`Sem ${
+                      columnCategories ? 'categorias' : 'itens'
+                    } por enquanto.`}</Parapraph>
+                  )}
                 </ColumnDetails>
               );
             })}

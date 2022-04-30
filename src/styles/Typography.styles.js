@@ -37,6 +37,14 @@ export const H3 = styled.h3`
   color: ${Theme.neutral[600]};
 `;
 
+export const H4 = styled.h4`
+  font-family: ${Theme.inter};
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: ${Theme.green[700]};
+`;
+
 export const Strong = styled.div`
   font-family: ${Theme.inter};
   font-size: 16px;

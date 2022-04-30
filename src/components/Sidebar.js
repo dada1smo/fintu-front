@@ -28,7 +28,7 @@ export default function Sidebar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [userSavings, setUserSavings] = useState(0);
   const [loadingUserSavings, setLoadingUserSavings] = useState(false);
-  const { logout, username } = useUser();
+  const { logout, username, showOnboarding, setShowOnboarding } = useUser();
   const { getSavings } = useFinances();
 
   const screenSize = useWindowSize();
@@ -134,6 +134,11 @@ export default function Sidebar() {
                 onClick={() => navigate('/dashboard/categories')}
               >
                 Categorias
+              </ButtonUnderlined>
+              <ButtonUnderlined
+                onClick={() => setShowOnboarding(!showOnboarding)}
+              >
+                Como funciona
               </ButtonUnderlined>
             </SidebarContent>
           </SidebarContainer>

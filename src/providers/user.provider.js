@@ -6,10 +6,16 @@ const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
     setToken(localStorage.getItem('token'));
+    if (localStorage.getItem('onboarding') === null) {
+      setShowOnboarding(true);
+    } else {
+      setShowOnboarding(false);
+    }
   }, []);
 
   const login = async (data) => {
@@ -41,8 +47,24 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const handleOnboarding = () => {
+    localStorage.setItem('onboarding', false);
+    setShowOnboarding(false);
+  };
+
   return (
-    <UserContext.Provider value={{ login, logout, signup, username, token }}>
+    <UserContext.Provider
+      value={{
+        login,
+        logout,
+        signup,
+        username,
+        token,
+        handleOnboarding,
+        showOnboarding,
+        setShowOnboarding,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
