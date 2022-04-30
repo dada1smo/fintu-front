@@ -93,13 +93,14 @@ export default function ViewDetails({
           ) : (
             <>
               <ContainerDetailsTitle>
-                <ButtonIcon onClick={() => navigate('/dashboard/')}>
+                <ButtonIcon size="lg" onClick={() => navigate('/dashboard/')}>
                   <ReturnIcon />
                 </ButtonIcon>
               </ContainerDetailsTitle>
               <ContainerDetailsActions>
                 {columnItems && (
                   <ButtonIcon
+                    size="lg"
                     onClick={() =>
                       setFinancialItemModalOpen(!financialItemModalOpen)
                     }
@@ -109,12 +110,14 @@ export default function ViewDetails({
                 )}
                 {columnCategories && (
                   <ButtonIcon
+                    size="lg"
                     onClick={() => setCategoryModalOpen(!categoryModalOpen)}
                   >
                     <AddCategoryIcon />
                   </ButtonIcon>
                 )}
                 <ButtonIcon
+                  size="lg"
                   onClick={() => setResponsiveSidebar(!responsiveSidebar)}
                 >
                   <NavigationIcon />

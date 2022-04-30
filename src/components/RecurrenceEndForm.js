@@ -30,7 +30,9 @@ export default function RecurrenceEndForm({
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: { recurrenceEnd: itemRecurrenceEnd.toString().slice(0, 10) },
+    defaultValues: {
+      recurrenceEnd: itemRecurrenceEnd?.toString().slice(0, 10),
+    },
   });
   const { updateFinancialItem } = useFinances();
 

@@ -44,6 +44,10 @@ export const DropdownSelect = styled.div`
     transform: ${(props) => (props.open ? 'rotate(-180deg)' : 'none')};
     transition: 0.32s;
   }
+
+  @media ${Device.tablet} {
+    font-size: 14px;
+  }
 `;
 
 export const ContainerSelect = styled(motion.div)`

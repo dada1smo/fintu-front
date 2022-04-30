@@ -90,6 +90,7 @@ export default function Months() {
           ) : (
             <ResponsiveActions>
               <ButtonIcon
+                size="lg"
                 onClick={() =>
                   setFinancialItemModalOpen(!financialItemModalOpen)
                 }
@@ -97,6 +98,7 @@ export default function Months() {
                 <AddItemIcon />
               </ButtonIcon>
               <ButtonIcon
+                size="lg"
                 onClick={() => setResponsiveSidebar(!responsiveSidebar)}
               >
                 <NavigationIcon />

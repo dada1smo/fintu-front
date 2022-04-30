@@ -35,6 +35,11 @@ export const H3 = styled.h3`
   font-weight: 600;
   line-height: 24px;
   color: ${Theme.neutral[600]};
+
+  @media ${Device.tablet} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 
 export const H4 = styled.h4`

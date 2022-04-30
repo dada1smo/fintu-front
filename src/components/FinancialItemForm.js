@@ -296,16 +296,16 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
               />
             </FormFieldThird>
           )}
-          {savings && (
-            <FormFieldCheckbox
-              name="savings"
-              label="O item faz parte das economias"
-              register={register}
-              errors={errors}
-              control={control}
-            />
-          )}
         </FormFlex>
+      )}
+      {savings && (
+        <FormFieldCheckbox
+          name="savings"
+          label="O item faz parte das economias"
+          register={register}
+          errors={errors}
+          control={control}
+        />
       )}
       <ContainerItemFormFooter>
         {item ? (

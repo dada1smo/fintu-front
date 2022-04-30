@@ -119,7 +119,7 @@ export default function CategoryItem({
       <Modal
         open={deleteCategoryModalOpen}
         setOpen={setDeleteCategoryModalOpen}
-        title="Deseja excluir o item?"
+        title="Deseja excluir a categoria?"
       >
         <ContainerModalFooter>
           <ButtonPillCaution onClick={() => handleDeleteFinancialItem(id)}>
