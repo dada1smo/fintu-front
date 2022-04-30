@@ -13,9 +13,7 @@ import { Value, H4, Parapraph } from '../styles/Typography.styles';
 
 export default function Dashboard() {
   const { pathname } = useLocation();
-  const { showFirstSteps, setShowFirstSteps, handleFirstSteps } = useUser();
-
-  console.log(showFirstSteps);
+  const { handleOnboarding, showOnboarding, setShowOnboarding } = useUser();
 
   return (
     <>
@@ -24,9 +22,9 @@ export default function Dashboard() {
         <Outlet />
       </Wrapper>
       <Modal
-        open={showFirstSteps}
-        setOpen={setShowFirstSteps}
-        title="Primeiros passos"
+        open={showOnboarding}
+        setOpen={setShowOnboarding}
+        title="Como funciona"
       >
         <ContainerModalContent>
           <H4>1. Itens financeiros</H4>
@@ -63,7 +61,7 @@ export default function Dashboard() {
           </Parapraph>
         </ContainerModalContent>
         <ContainerModalFooter>
-          <ButtonPill onClick={() => handleFirstSteps()}>Entendi</ButtonPill>
+          <ButtonPill onClick={() => handleOnboarding()}>Entendi</ButtonPill>
         </ContainerModalFooter>
       </Modal>
     </>

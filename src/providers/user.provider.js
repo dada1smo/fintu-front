@@ -6,20 +6,17 @@ const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
-  const [showFirstSteps, setShowFirstSteps] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
     setToken(localStorage.getItem('token'));
-    if (localStorage.getItem('firstSteps') === null) {
-      setShowFirstSteps(true);
+    if (localStorage.getItem('onboarding') === null) {
+      setShowOnboarding(true);
     } else {
-      setShowFirstSteps(false);
+      setShowOnboarding(false);
     }
   }, []);
-
-  console.log(showFirstSteps);
-  console.log(localStorage.getItem('firstSteps'));
 
   const login = async (data) => {
     try {
@@ -50,9 +47,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const handleFirstSteps = () => {
-    localStorage.setItem('firstSteps', false);
-    setShowFirstSteps(false);
+  const handleOnboarding = () => {
+    localStorage.setItem('onboarding', false);
+    setShowOnboarding(false);
   };
 
   return (
@@ -63,9 +60,9 @@ export const UserProvider = ({ children }) => {
         signup,
         username,
         token,
-        handleFirstSteps,
-        showFirstSteps,
-        setShowFirstSteps,
+        handleOnboarding,
+        showOnboarding,
+        setShowOnboarding,
       }}
     >
       {children}
