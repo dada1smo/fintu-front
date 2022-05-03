@@ -245,7 +245,7 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
         )}
       </FormFlex>
       <FormFlex>
-        {!item && !savings && (
+        {/* {!item && !savings && (
           <FormFieldHalf>
             <InputLabel>O item é recorrente ou parcelado?</InputLabel>
             <Select
@@ -255,7 +255,7 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
               items={recurringInstallmentOptions}
             />
           </FormFieldHalf>
-        )}
+        )} */}
         <FormFieldHalf>
           <InputLabel>Qual a categoria do item?</InputLabel>
           {loadingCategories ? (
@@ -274,15 +274,13 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
       </FormFlex>
       {!item && !savings && (
         <FormFlex>
-          {isRecurring === 'Recorrente' && (
-            <FormFieldCheckbox
-              name="recurring"
-              label="Item recorrente"
-              register={register}
-              errors={errors}
-              control={control}
-            />
-          )}
+          <FormFieldCheckbox
+            name="recurring"
+            label="O item é recorrente"
+            register={register}
+            errors={errors}
+            control={control}
+          />
           {isRecurring === 'Parcelado' && (
             <FormFieldThird>
               <FormFieldText
