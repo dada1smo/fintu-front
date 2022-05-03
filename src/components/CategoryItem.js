@@ -55,7 +55,7 @@ export default function CategoryItem({
     },
   ];
 
-  const handleDeleteFinancialItem = async (id) => {
+  const handleDeleteCategory = async (id) => {
     try {
       await deleteCategory(id);
       onPostSubmit();
@@ -122,7 +122,7 @@ export default function CategoryItem({
         title="Deseja excluir a categoria?"
       >
         <ContainerModalFooter>
-          <ButtonPillCaution onClick={() => handleDeleteFinancialItem(id)}>
+          <ButtonPillCaution onClick={() => handleDeleteCategory(id)}>
             Excluir
           </ButtonPillCaution>
         </ContainerModalFooter>

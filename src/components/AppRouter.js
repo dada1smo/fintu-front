@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Dashboard from '../layouts/Dashboard';
 import Home from '../layouts/Home';
 import useUser from '../providers/user.provider';
@@ -12,17 +12,17 @@ import SavingsDetails from './SavingsDetails';
 import CategoriesDetails from './CategoriesDetails';
 
 export default function AppRouter() {
-  const { token } = useUser();
+  const { getToken } = useUser();
 
   return (
     <Routes>
-      <Route element={<PublicRoute token={token} />}>
+      <Route element={<PublicRoute token={getToken} />}>
         <Route path="/" element={<Home />}>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
       </Route>
-      <Route element={<PrivateRoute token={token} />}>
+      <Route element={<PrivateRoute token={getToken} />}>
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="/dashboard" element={<Months />} />
           <Route path="/dashboard/details/:month" element={<MonthDetails />} />

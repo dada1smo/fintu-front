@@ -60,6 +60,12 @@ export default function ViewDetails({
   const screenSize = useWindowSize();
   const { responsiveSidebar, setResponsiveSidebar } = useSidebar();
 
+  const handlePostSubmit = () => {
+    onPostSubmit();
+    setFinancialItemModalOpen(false);
+    setCategoryModalOpen(false);
+  };
+
   return (
     <>
       <ContainerDetails>
@@ -213,7 +219,10 @@ export default function ViewDetails({
           setOpen={setFinancialItemModalOpen}
           title="Adicionar item"
         >
-          <FinancialItemForm onPostSubmit={onPostSubmit} savings={savings} />
+          <FinancialItemForm
+            onPostSubmit={handlePostSubmit}
+            savings={savings}
+          />
         </Modal>
       )}
       {columnCategories && (
@@ -222,7 +231,7 @@ export default function ViewDetails({
           setOpen={setCategoryModalOpen}
           title="Adicionar categoria"
         >
-          <CategoryForm onPostSubmit={onPostSubmit} />
+          <CategoryForm onPostSubmit={handlePostSubmit} />
         </Modal>
       )}
     </>

@@ -8,9 +8,12 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState('');
   const [showOnboarding, setShowOnboarding] = useState(false);
 
+  const getUsername = localStorage.getItem('username');
+  const getToken = localStorage.getItem('token');
+
   useEffect(() => {
-    setUsername(localStorage.getItem('username'));
-    setToken(localStorage.getItem('token'));
+    setUsername(getUsername);
+    setToken(getToken);
     if (localStorage.getItem('onboarding') === null) {
       setShowOnboarding(true);
     } else {
@@ -60,6 +63,7 @@ export const UserProvider = ({ children }) => {
         signup,
         username,
         token,
+        getToken,
         handleOnboarding,
         showOnboarding,
         setShowOnboarding,

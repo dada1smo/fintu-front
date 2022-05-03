@@ -97,6 +97,12 @@ export default function FinancialItem({
     }
   };
 
+  const handlePostSubmit = () => {
+    onPostSubmit();
+    setEndRecurrenceItemModalOpen(false);
+    setItemModalOpen(false);
+  };
+
   return (
     <>
       <ItemDetails>
@@ -153,7 +159,7 @@ export default function FinancialItem({
         setOpen={setItemModalOpen}
         title="Editar item"
       >
-        <FinancialItemForm onPostSubmit={onPostSubmit} item={item} />
+        <FinancialItemForm onPostSubmit={handlePostSubmit} item={item} />
       </Modal>
       <Modal
         open={deleteItemModalOpen}
@@ -172,7 +178,7 @@ export default function FinancialItem({
         title="Qual a data final de recorrência do item?"
       >
         <RecurrenceEndForm
-          onPostSubmit={onPostSubmit}
+          onPostSubmit={handlePostSubmit}
           itemId={id}
           itemRecurrenceEnd={item.recurrenceEnd}
         />
