@@ -39,6 +39,7 @@ export default function Login() {
       await login(data);
     } catch (error) {
       setLoginError(error.response.data.msg);
+      setLoading(false);
     }
   };
 

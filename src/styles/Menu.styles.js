@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { Theme } from './Theme.styles';
 import { motion } from 'framer-motion';
-import { Device } from './Breakpoints.styles';
 
 export const BackdropMenu = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  height: fill-available;
+  height: stretch;
   z-index: 100;
   top: 0;
   left: 0;

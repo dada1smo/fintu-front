@@ -9,7 +9,7 @@ export const LoadingPageOverlay = styled(motion.div)`
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: fill-available;
+  height: stretch;
   background: ${rgba(`${Theme.neutral[900]}`, 0.4)};
   z-index: 12000;
   display: flex;

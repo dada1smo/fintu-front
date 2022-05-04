@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   grid-template-columns: repeat(12, 1fr);
   column-gap: 24px;
   height: 100vh;
-  height: fill-available;
+  height: stretch;
   overflow: hidden;
   position: relative;
   font-family: ${Theme.inter};
