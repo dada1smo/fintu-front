@@ -10,7 +10,7 @@ O projeto nasceu como trabalho final do bootcamp de Desenvolvimento Web da Ironh
 
 ## Fintu API
 
- - [Fintu API](https://github.com/dada1smo/fintu-api)
+ - [fintu-api](https://github.com/dada1smo/fintu-api)
 
 ## Funcionalidades
 
@@ -31,7 +31,7 @@ Clone o projeto
 Entre no diretório do projeto
 
 ```bash
-  cd my-project
+  cd fintu-front
 ```
 
 Instale as dependências
