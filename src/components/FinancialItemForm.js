@@ -276,7 +276,7 @@ export default function FinancialItemForm({ onPostSubmit, item, savings }) {
         <FormFlex>
           <FormFieldCheckbox
             name="recurring"
-            label="O item é recorrente"
+            label="O item se repete mensalmente"
             register={register}
             errors={errors}
             control={control}

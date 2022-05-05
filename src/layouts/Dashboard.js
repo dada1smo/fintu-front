@@ -52,12 +52,12 @@ export default function Dashboard() {
             Para te ajudar, já criamos algumas, mas elas também pode ser
             editadas ou removidas.
           </Parapraph>
-          <H4>4. Itens recorrentes</H4>
+          <H4>4. Itens mensais recorrentes</H4>
           <Parapraph>
             Sabe aqueles valores que se repetem todo mês? Por exemplo, seu
             salário ou uma assinatura de streaming. Ao adicionar um novo item,
-            você pode marcar ele como "Recorrente" e ele vai se repetir até você
-            decidir "Encerrar a recorrência".
+            você pode marcar ele como uma recorrência mensal e ele vai se
+            repetir até você decidir "Encerrar a recorrência".
           </Parapraph>
         </ContainerModalContent>
         <ContainerModalFooter>

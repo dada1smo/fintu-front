@@ -22,10 +22,6 @@ export const Input = styled.input`
     background: ${Theme.green[50]};
     border-bottom: 1px solid ${Theme.green[500]};
   }
-
-  @media ${Device.tablet} {
-    font-size: 14px;
-  }
 `;
 
 export const InputLabel = styled.label`
@@ -79,10 +75,6 @@ export const RadioLabel = styled.label`
   color: ${Theme.neutral[600]};
   margin-left: 4px;
   white-space: nowrap;
-
-  @media ${Device.tablet} {
-    font-size: 14px;
-  }
 `;
 
 export const RadioOption = styled.div`
