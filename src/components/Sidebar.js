@@ -127,6 +127,9 @@ export default function Sidebar() {
               )}
             </SidebarWallet>
             <SidebarContent>
+              <ButtonUnderlined onClick={() => navigate('/dashboard')}>
+                Visão geral
+              </ButtonUnderlined>
               <ButtonUnderlined onClick={() => navigate('/dashboard/savings')}>
                 Economias
               </ButtonUnderlined>

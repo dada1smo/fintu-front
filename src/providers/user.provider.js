@@ -29,6 +29,11 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem('token', response.data.token);
       setUsername(response.data.payload.username);
       setToken(response.data.token);
+      if (localStorage.getItem('onboarding') === null) {
+        setShowOnboarding(true);
+      } else {
+        setShowOnboarding(false);
+      }
     } catch (error) {
       throw error;
     }

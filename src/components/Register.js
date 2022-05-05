@@ -122,7 +122,7 @@ export default function Register() {
       </CardHomeForm>
       <CardHomeActions>
         <ButtonUnderlined onClick={() => navigate('/')}>
-          Acessar minha conta
+          Ir para login
         </ButtonUnderlined>
       </CardHomeActions>
       {loading && <LoadingPage>Loading...</LoadingPage>}

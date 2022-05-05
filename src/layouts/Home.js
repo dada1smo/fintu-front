@@ -25,7 +25,7 @@ export default function Home() {
 
       <CardHome login={pathname === '/'}>
         <Logo src={logo} alt="Fintu" />
-        <H1>Boas-vindas à sua saúde financeira</H1>
+        <H1>O primeiro passo para sua saúde financeira</H1>
         <Subtitle>
           Fintu é sua aplicação de finanças pessoais e controle de gastos
         </Subtitle>

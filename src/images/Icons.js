@@ -11,6 +11,7 @@ import navigationIcon from './NavigationIcon.svg';
 import addItemIcon from './AddItemIcon.svg';
 import returnIcon from './ReturnIcon.svg';
 import addCategoryIcon from './AddCategoryIcon.svg';
+import userIcon from './UserIcon.svg';
 
 export const CheckIcon = () => <img src={checkIcon} alt="" />;
 export const MenuHorizontalIcon = () => <img src={menuHorizontalIcon} alt="" />;
@@ -25,3 +26,4 @@ export const NavigationIcon = () => <img src={navigationIcon} alt="" />;
 export const AddItemIcon = () => <img src={addItemIcon} alt="" />;
 export const ReturnIcon = () => <img src={returnIcon} alt="" />;
 export const AddCategoryIcon = () => <img src={addCategoryIcon} alt="" />;
+export const UserIcon = () => <img src={userIcon} alt="" />;

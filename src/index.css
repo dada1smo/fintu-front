@@ -6,17 +6,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  height: fill-available;
+  height: stretch;
   height: -webkit-fill-available;
 }
 
 html {
-  height: fill-available;
+  height: stretch;
   height: -webkit-fill-available;
 }
 
 #root {
-  height: fill-available;
+  height: stretch;
   height: -webkit-fill-available;
 }
 
